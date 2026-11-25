@@ -26,7 +26,12 @@ _CHARS_PER_TOKEN = 3.8
 
 def methodology() -> str:
     if os.environ.get("ANTHROPIC_API_KEY"):
-        return "Anthropic messages.count_tokens endpoint (model-authoritative)"
+        try:
+            # Try to detect if count_tokens is available
+            get_client().messages.count_tokens
+            return "Anthropic messages.count_tokens endpoint (model-authoritative)"
+        except AttributeError:
+            return f"len(text) / {_CHARS_PER_TOKEN} heuristic (SDK doesn't support count_tokens)"
     return f"len(text) / {_CHARS_PER_TOKEN} heuristic (no API key available)"
 
 
@@ -35,11 +40,15 @@ def count(text: str) -> int:
     if not text:
         return 0
     if os.environ.get("ANTHROPIC_API_KEY"):
-        resp = get_client().messages.count_tokens(
-            model=get_model(),
-            messages=[{"role": "user", "content": text}],
-        )
-        return int(resp.input_tokens)
+        try:
+            resp = get_client().messages.count_tokens(
+                model=get_model(),
+                messages=[{"role": "user", "content": text}],
+            )
+            return int(resp.input_tokens)
+        except AttributeError:
+            # SDK version doesn't support count_tokens, fall back to heuristic
+            pass
     return max(1, int(len(text) / _CHARS_PER_TOKEN))
 
 

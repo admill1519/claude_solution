@@ -1,0 +1,22 @@
+{
+  "token_counter_methodology": "len(text) / 3.8 heuristic (SDK doesn't support count_tokens)",
+  "baseline_tokens": 47144,
+  "assembled_tokens": 20518,
+  "reduction_pct": 56.48,
+  "per_section_tokens": {
+    "case_facts": 149,
+    "resolved_refund": 350,
+    "resolved_subscription": 480,
+    "active": 19538
+  },
+  "compression_api": {
+    "refund": {
+      "input_tokens": 12334,
+      "output_tokens": 382
+    },
+    "subscription": {
+      "input_tokens": 11475,
+      "output_tokens": 473
+    }
+  }
+}
