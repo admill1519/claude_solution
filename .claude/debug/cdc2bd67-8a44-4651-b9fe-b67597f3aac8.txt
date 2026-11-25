@@ -22344,3 +22344,1820 @@ Updating files:   2% (21/938)Updating files:   3% (29/938)Updating files:   3%
     at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
     at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
     at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:25:17.139Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:25:17.139Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:25:17.432Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async Object.current (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615)
+2026-11-25T14:25:22.476Z [ERROR] Error: Error: 1P event logging: 1 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:25:22.476Z [ERROR] Error: Error: {"stack":"Error: Failed to export 1 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 1 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:47:29.533Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:47:29.533Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:47:29.533Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:47:29.533Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:47:37.850Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-11-25T14:47:37.850Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:47:37.850Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-11-25T14:47:37.859Z [DEBUG] FileHistory: Making snapshot for message 4ccc0f9f-5ab6-4177-b8a3-1d6a7cb67961
+2026-11-25T14:47:37.973Z [DEBUG] FileHistory: Missing tracked file: py3.13-exercises-and-project/Project-Harness Engineering with Claude and Claude Code/reflection-brief-COMPLETED.md
+2026-11-25T14:47:37.986Z [DEBUG] FileHistory: Added snapshot for 4ccc0f9f-5ab6-4177-b8a3-1d6a7cb67961, tracking 29 files
+2026-11-25T14:47:40.762Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:47:40.765Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:47:40.765Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:47:40.767Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:47:40.836Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:47:40.863Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:47:40.863Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:47:40.863Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:47:40.912Z [ERROR] Error: Error: 1P event logging: 2 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:47:40.912Z [ERROR] Error: Error: {"stack":"Error: Failed to export 2 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 2 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:47:41.144Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:47:41.144Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:47:41.144Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:47:41.144Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:47:41.326Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:47:41.326Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:47:43.105Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:47:45.607Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:47:45.615Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:47:45.615Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:47:45.615Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:47:45.941Z [ERROR] Error: Error: 1P event logging: 19 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:47:45.941Z [ERROR] Error: Error: {"stack":"Error: Failed to export 19 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 19 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:47:51.645Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:47:51.646Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:47:51.646Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:47:51.646Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:47:51.675Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:47:51.675Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:47:51.675Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:47:51.715Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:47:51.715Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:47:51.715Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:47:51.715Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:47:51.787Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:47:51.809Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:47:51.809Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:47:51.809Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:47:51.912Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:47:51.912Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:47:51.912Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:47:51.912Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:47:52.099Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:47:52.099Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:47:52.535Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:47:52.744Z [ERROR] Error: Error: 1P event logging: 22 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:47:52.744Z [ERROR] Error: Error: {"stack":"Error: Failed to export 22 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 22 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:47:53.642Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:47:53.648Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:47:53.648Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:47:53.648Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:47:53.670Z [DEBUG] Permission suggestions for Bash: []
+2026-11-25T14:47:53.687Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:47:53.706Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:47:53.706Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:47:53.706Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:47:57.908Z [ERROR] Error: Error: 1P event logging: 44 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:47:57.908Z [ERROR] Error: Error: {"stack":"Error: Failed to export 44 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 44 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:47:59.699Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-11-25T14:47:59.700Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:47:59.700Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-11-25T14:48:02.630Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T14:48:03.864Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:48:03.864Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:48:04.275Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T14:48:05.026Z [ERROR] Error: Error: 1P event logging: 28 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:05.026Z [ERROR] Error: Error: {"stack":"Error: Failed to export 28 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 28 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:10.841Z [ERROR] Error: Error: 1P event logging: 10 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:10.842Z [ERROR] Error: Error: {"stack":"Error: Failed to export 10 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 10 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:15.868Z [ERROR] Error: Error: 1P event logging: 12 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:15.868Z [ERROR] Error: Error: {"stack":"Error: Failed to export 12 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 12 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:21.645Z [ERROR] Error: Error: 1P event logging: 10 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:21.645Z [ERROR] Error: Error: {"stack":"Error: Failed to export 10 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 10 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:26.788Z [ERROR] Error: Error: 1P event logging: 11 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:26.788Z [ERROR] Error: Error: {"stack":"Error: Failed to export 11 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 11 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:31.813Z [ERROR] Error: Error: 1P event logging: 11 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:31.813Z [ERROR] Error: Error: {"stack":"Error: Failed to export 11 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 11 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:37.739Z [ERROR] Error: Error: 1P event logging: 10 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:37.739Z [ERROR] Error: Error: {"stack":"Error: Failed to export 10 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 10 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:42.767Z [ERROR] Error: Error: 1P event logging: 12 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:42.767Z [ERROR] Error: Error: {"stack":"Error: Failed to export 12 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 12 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:48.799Z [ERROR] Error: Error: 1P event logging: 10 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:48.799Z [ERROR] Error: Error: {"stack":"Error: Failed to export 10 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 10 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:53.817Z [ERROR] Error: Error: 1P event logging: 12 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:53.817Z [ERROR] Error: Error: {"stack":"Error: Failed to export 12 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 12 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:48:59.886Z [ERROR] Error: Error: 1P event logging: 10 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:48:59.886Z [ERROR] Error: Error: {"stack":"Error: Failed to export 10 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 10 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:04.913Z [ERROR] Error: Error: 1P event logging: 12 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:49:04.913Z [ERROR] Error: Error: {"stack":"Error: Failed to export 12 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 12 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:10.808Z [ERROR] Error: Error: 1P event logging: 10 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:49:10.808Z [ERROR] Error: Error: {"stack":"Error: Failed to export 10 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 10 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:15.833Z [ERROR] Error: Error: 1P event logging: 12 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:49:15.834Z [ERROR] Error: Error: {"stack":"Error: Failed to export 12 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 12 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:16.190Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:16.191Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:16.191Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:16.192Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:16.225Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:49:16.225Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:16.225Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:16.265Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:49:16.265Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:49:16.265Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:49:16.265Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:49:16.366Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:49:16.390Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:16.390Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:16.390Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:16.514Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:16.514Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:16.514Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:16.514Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:16.710Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:16.710Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:17.746Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:49:19.556Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:49:19.564Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:49:19.564Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:19.564Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:19.601Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:19.602Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:19.602Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:19.602Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:19.602Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:19.602Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:19.603Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.603Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.604Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.604Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.604Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.604Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.604Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.604Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.605Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.605Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.605Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.605Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.606Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.606Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.607Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.607Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.608Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.608Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.803Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:19.803Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.803Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.803Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.808Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:19.808Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.808Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.808Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.812Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:19.814Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.814Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.814Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.817Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:19.817Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.817Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.817Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.828Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:19.828Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.828Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.828Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.837Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:19.837Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:19.837Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:19.837Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:19.992Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:19.993Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:20.002Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:20.002Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:20.008Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:20.009Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:20.014Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:20.014Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:20.018Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:20.018Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:20.030Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:20.030Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:20.056Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "ls -lah runs/*/"
+      },
+      {
+        "toolName": "Bash",
+        "ruleContent": "head -20 runs/*/summary.md"
+      },
+      {
+        "toolName": "Bash",
+        "ruleContent": "ls -1 runs/*/traces/"
+      },
+      {
+        "toolName": "Bash",
+        "ruleContent": "ls -1 runs/*/queues/"
+      },
+      {
+        "toolName": "Bash",
+        "ruleContent": "head -1 runs/*/escalations.jsonl"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-11-25T14:49:20.101Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:49:20.140Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:49:20.140Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:20.140Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:21.199Z [ERROR] Error: Error: 1P event logging: 88 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:49:21.199Z [ERROR] Error: Error: {"stack":"Error: Failed to export 88 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 88 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:26.129Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-11-25T14:49:26.129Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:26.129Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-11-25T14:49:28.211Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T14:49:28.308Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:28.311Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:28.311Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:28.313Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:28.385Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:49:28.385Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:28.385Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:28.455Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:49:28.455Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:49:28.455Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:49:28.455Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:49:29.022Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:29.022Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:29.022Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:29.022Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:29.064Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:49:29.338Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:29.338Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:29.338Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:29.497Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:49:29.497Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:49:29.696Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:29.697Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:29.909Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T14:49:30.033Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:49:31.167Z [ERROR] Error: Error: 1P event logging: 39 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:49:31.167Z [ERROR] Error: Error: {"stack":"Error: Failed to export 39 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 39 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:33.429Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:49:33.440Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:49:33.440Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:33.440Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:33.471Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:33.471Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:33.472Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:33.472Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:33.473Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:33.473Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:33.483Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:33.483Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:33.665Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:33.666Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:33.666Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:33.666Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:33.685Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:33.685Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:33.685Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:33.685Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:33.867Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:33.867Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:33.889Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:33.893Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:34.049Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "python -m pytest tests/test_case_facts.py tests/test_assemble.py tests/test_compressor.py tests/test_pruner.py -v"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-11-25T14:49:34.153Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:49:34.228Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:49:34.228Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:34.228Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:36.610Z [ERROR] Error: Error: 1P event logging: 54 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:49:36.610Z [ERROR] Error: Error: {"stack":"Error: Failed to export 54 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 54 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:39.826Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T14:49:41.045Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:49:41.045Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:49:41.504Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T14:49:44.806Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:44.810Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:44.810Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:44.811Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:44.865Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:49:44.865Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:44.865Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:44.914Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:49:44.914Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:49:44.914Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:49:44.914Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:49:45.109Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:45.109Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:45.109Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:45.109Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:45.142Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:49:45.189Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:45.189Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:45.189Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:45.252Z [ERROR] Error: Error: 1P event logging: 17 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:49:45.252Z [ERROR] Error: Error: {"stack":"Error: Failed to export 17 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 17 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:45.359Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:45.360Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:45.886Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:49:46.968Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:49:46.981Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:49:46.981Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:46.981Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:47.012Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:47.013Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:47.013Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:47.013Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:47.014Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:47.014Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:47.015Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:47.015Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:47.194Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:47.194Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:47.194Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:47.194Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:47.216Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:47.216Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:47.216Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:47.217Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:47.385Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:47.386Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:47.390Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:47.391Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:47.407Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "timeout 30 python -m pytest tests/test_case_facts.py tests/test_assemble.py tests/test_compressor.py -v"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-11-25T14:49:47.437Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:49:47.464Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:49:47.464Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:47.464Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:49.559Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T14:49:50.287Z [ERROR] Error: Error: 1P event logging: 66 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:49:50.287Z [ERROR] Error: Error: {"stack":"Error: Failed to export 66 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 66 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:50.897Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:49:50.897Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:49:51.284Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T14:49:56.357Z [ERROR] Error: Error: 1P event logging: 11 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:49:56.357Z [ERROR] Error: Error: {"stack":"Error: Failed to export 11 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 11 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:49:56.946Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:49:56.947Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:56.947Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:56.948Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:56.974Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:49:56.974Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:49:56.974Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:49:57.015Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:49:57.015Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:49:57.015Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:49:57.015Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:49:57.115Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:49:57.143Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:57.143Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:57.143Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:57.237Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:57.237Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:49:57.237Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:49:57.237Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:49:57.427Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:49:57.427Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:49:58.147Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:50:00.054Z [DEBUG] executePreToolHooks called for tool: Read
+2026-11-25T14:50:00.064Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-11-25T14:50:00.064Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:00.064Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-11-25T14:50:00.098Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-11-25T14:50:00.098Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:00.098Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-11-25T14:50:00.147Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:50:00.147Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:50:00.147Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:50:00.147Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:50:00.213Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:50:00.238Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:00.238Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:00.238Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:01.011Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:50:01.618Z [ERROR] Error: Error: 1P event logging: 28 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:50:01.618Z [ERROR] Error: Error: {"stack":"Error: Failed to export 28 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 28 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:50:03.506Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:50:03.516Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:50:03.516Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:03.516Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:06.863Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:50:06.866Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:06.866Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:06.866Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:06.906Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:50:06.906Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:06.906Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:06.950Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:50:06.950Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:50:06.950Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:50:06.950Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:50:07.077Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:07.077Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:07.077Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:07.077Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:07.092Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:50:07.159Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:07.159Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:07.159Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:07.313Z [ERROR] Error: Error: 1P event logging: 17 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:50:07.313Z [ERROR] Error: Error: {"stack":"Error: Failed to export 17 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 17 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:50:07.407Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:07.408Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:50:07.878Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:50:08.683Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:50:08.690Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:50:08.691Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:08.691Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:08.720Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:50:08.720Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:50:08.721Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:08.721Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:08.722Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:08.722Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:08.722Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:08.723Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:08.915Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:08.915Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:08.915Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:08.915Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:08.919Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:08.920Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:08.920Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:08.920Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:09.117Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:09.118Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:50:09.128Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:09.128Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:50:09.140Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "python -m pytest tests/ --tb=no -q"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-11-25T14:50:09.168Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:50:09.189Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:50:09.189Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:09.189Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:12.344Z [ERROR] Error: Error: 1P event logging: 59 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:50:12.344Z [ERROR] Error: Error: {"stack":"Error: Failed to export 59 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 59 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:50:15.184Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-11-25T14:50:15.184Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:15.184Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-11-25T14:50:17.602Z [DEBUG] Persisting permission update: addRules to source 'localSettings'
+2026-11-25T14:50:17.602Z [DEBUG] Persisting 1 allow rule(s) to localSettings
+2026-11-25T14:50:17.615Z [DEBUG] Writing to temp file: /voc/work/.claude/settings.local.json.tmp.3739.1795618217615
+2026-11-25T14:50:17.615Z [DEBUG] Preserving file permissions: 100644
+2026-11-25T14:50:17.635Z [DEBUG] Temp file written successfully, size: 1926 bytes
+2026-11-25T14:50:17.642Z [DEBUG] Applied original permissions to temp file
+2026-11-25T14:50:17.642Z [DEBUG] Renaming /voc/work/.claude/settings.local.json.tmp.3739.1795618217615 to /voc/work/.claude/settings.local.json
+2026-11-25T14:50:17.653Z [DEBUG] File /voc/work/.claude/settings.local.json written atomically
+2026-11-25T14:50:17.672Z [DEBUG] Applying permission update: Adding 1 allow rule(s) to destination 'localSettings': ["Bash(python -m pytest tests/ --tb=no -q)"]
+2026-11-25T14:50:17.765Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T14:50:19.057Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:50:19.057Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:50:19.134Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-11-25T14:50:19.136Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-11-25T14:50:19.136Z [DEBUG] Metrics export disabled by organization setting
+2026-11-25T14:50:19.489Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T14:50:20.226Z [ERROR] Error: Error: 1P event logging: 27 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:50:20.227Z [ERROR] Error: Error: {"stack":"Error: Failed to export 27 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 27 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:50:23.075Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:50:23.077Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:23.077Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:23.078Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:23.132Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:50:23.132Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:23.132Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:23.174Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:50:23.174Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:50:23.174Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:50:23.174Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:50:23.338Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:50:23.376Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:23.376Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:23.377Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:23.455Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:23.457Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:23.457Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:23.457Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:23.664Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:23.664Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:50:24.317Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:50:25.567Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:50:25.584Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:50:25.584Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:25.584Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:25.646Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:50:25.647Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:50:25.648Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:25.648Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:25.649Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:25.649Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:25.649Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:25.662Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:25.779Z [ERROR] Error: Error: 1P event logging: 29 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:50:25.780Z [ERROR] Error: Error: {"stack":"Error: Failed to export 29 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 29 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:50:25.845Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:25.846Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:25.846Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:25.846Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:25.884Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:25.884Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:25.884Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:25.884Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:26.029Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:26.030Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:50:26.091Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:26.091Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:50:26.110Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "python -m ecommerce_team_config ."
+      },
+      {
+        "toolName": "Bash",
+        "ruleContent": "echo \"EXIT_CODE: $?\""
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-11-25T14:50:26.166Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:50:26.239Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:50:26.239Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:26.239Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:30.883Z [ERROR] Error: Error: 1P event logging: 46 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:50:30.883Z [ERROR] Error: Error: {"stack":"Error: Failed to export 46 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 46 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:50:32.227Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-11-25T14:50:32.227Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:32.227Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-11-25T14:50:37.254Z [ERROR] Error: Error: 1P event logging: 1 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:50:37.254Z [ERROR] Error: Error: {"stack":"Error: Failed to export 1 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 1 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:50:43.176Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T14:50:44.216Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:50:44.222Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:44.222Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:44.225Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:44.284Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:50:44.285Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:44.285Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:44.372Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:50:44.372Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:50:44.372Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:50:44.372Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:50:44.410Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:50:44.410Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:50:44.733Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:44.733Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:44.733Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:44.733Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:44.779Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:50:44.785Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T14:50:44.916Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:44.916Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:44.916Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:45.028Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:45.028Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:50:45.583Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:50:46.936Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:50:46.955Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:50:46.955Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:46.955Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:48.185Z [ERROR] Error: Error: 1P event logging: 25 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:50:48.185Z [ERROR] Error: Error: {"stack":"Error: Failed to export 25 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 25 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:50:51.376Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:50:51.376Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:51.376Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:51.377Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:51.406Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:50:51.406Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:51.406Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:51.444Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:50:51.444Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:50:51.444Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:50:51.444Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:50:51.565Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:50:51.595Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:51.595Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:51.595Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:51.673Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:51.673Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:50:51.673Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:50:51.673Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:50:51.864Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:50:51.864Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:50:52.470Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:50:54.087Z [ERROR] Error: Error: 1P event logging: 21 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:50:54.088Z [ERROR] Error: Error: {"stack":"Error: Failed to export 21 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 21 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:50:54.443Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:50:54.459Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:50:54.459Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:50:54.459Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:50:54.498Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "setMode",
+    "mode": "acceptEdits",
+    "destination": "session"
+  }
+]
+2026-11-25T14:50:58.697Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:51:08.199Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:51:08.199Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:51:08.199Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:51:14.842Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-11-25T14:51:14.842Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:51:14.842Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-11-25T14:51:14.924Z [ERROR] Error: Error: 1P event logging: 43 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:51:14.924Z [ERROR] Error: Error: {"stack":"Error: Failed to export 43 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 43 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:51:19.956Z [ERROR] Error: Error: 1P event logging: 20 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:51:19.957Z [ERROR] Error: Error: {"stack":"Error: Failed to export 20 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 20 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:51:33.256Z [ERROR] Error: Error: 1P event logging: 38 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:51:33.256Z [ERROR] Error: Error: {"stack":"Error: Failed to export 38 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 38 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:51:43.906Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T14:51:44.095Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:51:44.097Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:51:44.097Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:51:44.098Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:51:44.453Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:51:44.453Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:51:44.453Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:51:44.531Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:51:44.532Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:51:44.532Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:51:44.532Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:51:44.843Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:51:44.855Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:51:44.855Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:51:44.855Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:51:44.889Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:51:44.993Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:51:44.993Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:51:44.993Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:51:45.059Z [ERROR] Error: Error: 1P event logging: 12 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:51:45.059Z [ERROR] Error: Error: {"stack":"Error: Failed to export 12 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 12 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:51:45.169Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:51:45.169Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:51:45.214Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:51:45.217Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:51:45.575Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T14:51:45.766Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:51:47.014Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:51:47.024Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:51:47.024Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:51:47.024Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:51:47.057Z [DEBUG] Permission suggestions for Bash: [
+  {
+    "type": "addRules",
+    "rules": [
+      {
+        "toolName": "Bash",
+        "ruleContent": "python -m shift_monitor run-shift --shift C --warm-db data/warm.sqlite --recorded-response fixtures/recorded_responses/shift_C_2026-04-30.json"
+      }
+    ],
+    "behavior": "allow",
+    "destination": "localSettings"
+  }
+]
+2026-11-25T14:51:47.080Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:51:47.112Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:51:47.112Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:51:47.112Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:51:50.100Z [ERROR] Error: Error: 1P event logging: 72 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:51:50.101Z [ERROR] Error: Error: {"stack":"Error: Failed to export 72 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 72 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:51:53.099Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-11-25T14:51:53.099Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:51:53.099Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-11-25T14:51:57.221Z [DEBUG] Persisting permission update: addRules to source 'localSettings'
+2026-11-25T14:51:57.221Z [DEBUG] Persisting 1 allow rule(s) to localSettings
+2026-11-25T14:51:57.231Z [DEBUG] Writing to temp file: /voc/work/.claude/settings.local.json.tmp.3739.1795618317231
+2026-11-25T14:51:57.231Z [DEBUG] Preserving file permissions: 100644
+2026-11-25T14:51:57.248Z [DEBUG] Temp file written successfully, size: 2084 bytes
+2026-11-25T14:51:57.253Z [DEBUG] Applied original permissions to temp file
+2026-11-25T14:51:57.253Z [DEBUG] Renaming /voc/work/.claude/settings.local.json.tmp.3739.1795618317231 to /voc/work/.claude/settings.local.json
+2026-11-25T14:51:57.264Z [DEBUG] File /voc/work/.claude/settings.local.json written atomically
+2026-11-25T14:51:57.284Z [DEBUG] Applying permission update: Adding 1 allow rule(s) to destination 'localSettings': ["Bash(python -m shift_monitor run-shift --shift C --warm-db data/warm.sqlite --recorded-response fixtures/recorded_responses/shift_C_2026-04-30.json)"]
+2026-11-25T14:51:57.348Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T14:51:58.045Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:51:58.052Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:51:58.052Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:51:58.054Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:51:58.121Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:51:58.121Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:51:58.121Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:51:58.188Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:51:58.188Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:51:58.188Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:51:58.188Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:51:58.557Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:51:58.565Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:51:58.565Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:51:58.565Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:51:58.586Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:51:58.592Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:51:58.592Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:51:58.681Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:51:58.681Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:51:58.681Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:51:58.799Z [ERROR] Error: Error: 1P event logging: 29 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:51:58.800Z [ERROR] Error: Error: {"stack":"Error: Failed to export 29 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 29 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:51:58.930Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:51:58.930Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:51:58.950Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T14:51:59.431Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:52:00.823Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:52:00.834Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:52:00.834Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:52:00.834Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:52:00.980Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:52:00.984Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:52:00.984Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:52:00.985Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:52:01.007Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:52:01.007Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:52:01.007Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:52:01.052Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:52:01.052Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:52:01.052Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:52:01.052Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:52:01.144Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:52:01.185Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:52:01.185Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:52:01.185Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:52:01.200Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:52:01.200Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:52:01.200Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:52:01.200Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:52:01.431Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:52:01.431Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:52:01.936Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:52:03.835Z [ERROR] Error: Error: 1P event logging: 30 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:52:03.835Z [ERROR] Error: Error: {"stack":"Error: Failed to export 30 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 30 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:52:24.021Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:52:24.027Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:52:24.027Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:52:24.027Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:52:28.135Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:52:35.301Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:52:35.302Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:52:35.302Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:52:39.091Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-11-25T14:52:39.091Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:52:39.091Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-11-25T14:52:39.173Z [ERROR] Error: Error: 1P event logging: 44 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:52:39.173Z [ERROR] Error: Error: {"stack":"Error: Failed to export 44 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 44 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:52:44.202Z [ERROR] Error: Error: 1P event logging: 20 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:52:44.202Z [ERROR] Error: Error: {"stack":"Error: Failed to export 20 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 20 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:53:02.719Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T14:53:02.867Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:53:02.887Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:53:02.887Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:53:02.889Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:53:03.217Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T14:53:03.217Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:53:03.217Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:53:03.298Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:53:03.298Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:53:03.298Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:53:03.298Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:53:03.590Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:53:03.761Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:53:03.761Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:53:03.761Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:53:03.783Z [ERROR] Error: Error: 1P event logging: 25 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:53:03.783Z [ERROR] Error: Error: {"stack":"Error: Failed to export 25 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 25 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:53:03.785Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:53:03.786Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:53:03.786Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:53:03.786Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:53:03.960Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T14:53:03.960Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T14:53:04.020Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:53:04.020Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:53:04.268Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T14:53:04.923Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:53:08.803Z [ERROR] Error: Error: 1P event logging: 17 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:53:08.803Z [ERROR] Error: Error: {"stack":"Error: Failed to export 17 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 17 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:53:13.677Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-11-25T14:53:13.677Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:53:13.677Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-11-25T14:53:18.625Z [ERROR] Error: Error: 1P event logging: 3 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:53:18.625Z [ERROR] Error: Error: {"stack":"Error: Failed to export 3 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 3 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:54:04.632Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:54:04.632Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:54:04.632Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:54:04.632Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:54:04.677Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-11-25T14:54:04.677Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:54:04.677Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-11-25T14:54:04.693Z [DEBUG] FileHistory: Making snapshot for message 740dfa76-af16-4f5c-8b45-6af593d98dd8
+2026-11-25T14:54:04.746Z [DEBUG] FileHistory: Missing tracked file: py3.13-exercises-and-project/Project-Harness Engineering with Claude and Claude Code/reflection-brief-COMPLETED.md
+2026-11-25T14:54:04.756Z [DEBUG] FileHistory: Added snapshot for 740dfa76-af16-4f5c-8b45-6af593d98dd8, tracking 29 files
+2026-11-25T14:54:04.801Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/voc/work/.claude/skills, project=[]
+2026-11-25T14:54:04.829Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:54:04.832Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:54:04.832Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:54:04.835Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:54:04.838Z [DEBUG] Loaded 0 unique skills (managed: 0, user: 0, project: 0, legacy commands: 0)
+2026-11-25T14:54:04.838Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 0 bundled skills
+2026-11-25T14:54:04.918Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:54:04.950Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:54:04.950Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:54:04.950Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:54:05.225Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:54:05.226Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:54:05.226Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:54:05.226Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:54:05.423Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:54:05.423Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:54:06.426Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:54:09.637Z [ERROR] Error: Error: 1P event logging: 18 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:54:09.637Z [ERROR] Error: Error: {"stack":"Error: Failed to export 18 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 18 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:54:18.497Z [DEBUG] Streaming aborted by user: Request was aborted.
+2026-11-25T14:54:18.497Z [ERROR] Error in non-streaming fallback: Request was aborted.
+2026-11-25T14:54:18.504Z [ERROR] Error: Error: Request was aborted.
+    at OBA._createMessage (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:495:3157)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-11-25T14:54:23.532Z [ERROR] Error: Error: 1P event logging: 3 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:54:23.532Z [ERROR] Error: Error: {"stack":"Error: Failed to export 3 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 3 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:55:19.131Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-11-25T14:55:19.131Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-11-25T14:55:19.131Z [DEBUG] Metrics export disabled by organization setting
+2026-11-25T14:59:03.440Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T14:59:03.440Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T14:59:03.440Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T14:59:03.440Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T14:59:03.482Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-11-25T14:59:03.482Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:59:03.482Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-11-25T14:59:03.497Z [DEBUG] FileHistory: Making snapshot for message 2b588ad7-ef84-4466-962b-226fdb0b71ec
+2026-11-25T14:59:03.534Z [DEBUG] FileHistory: Missing tracked file: py3.13-exercises-and-project/Project-Harness Engineering with Claude and Claude Code/reflection-brief-COMPLETED.md
+2026-11-25T14:59:03.544Z [DEBUG] FileHistory: Added snapshot for 2b588ad7-ef84-4466-962b-226fdb0b71ec, tracking 29 files
+2026-11-25T14:59:03.601Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T14:59:03.603Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:59:03.603Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:59:03.605Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:59:03.660Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T14:59:03.690Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:59:03.690Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:59:03.690Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:59:04.108Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:59:04.108Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T14:59:04.108Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T14:59:04.108Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T14:59:04.326Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T14:59:04.326Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T14:59:04.558Z [DEBUG] Stream started - received first chunk
+2026-11-25T14:59:08.432Z [ERROR] Error: Error: 1P event logging: 15 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:59:08.432Z [ERROR] Error: Error: {"stack":"Error: Failed to export 15 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 15 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:59:31.948Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-11-25T14:59:31.953Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-11-25T14:59:31.953Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:59:31.953Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:59:35.876Z [DEBUG] executePermissionRequestHooks called for tool: Bash
+2026-11-25T14:59:42.848Z [DEBUG] Getting matching hook commands for PermissionRequest with query: Bash
+2026-11-25T14:59:42.848Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:59:42.848Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T14:59:42.912Z [ERROR] Error: Error: 1P event logging: 27 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:59:42.912Z [ERROR] Error: Error: {"stack":"Error: Failed to export 27 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 27 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T14:59:45.105Z [DEBUG] Getting matching hook commands for Notification with query: permission_prompt
+2026-11-25T14:59:45.105Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T14:59:45.105Z [DEBUG] Matched 0 unique hooks for query "permission_prompt" (0 before deduplication)
+2026-11-25T14:59:47.937Z [ERROR] Error: Error: 1P event logging: 22 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T14:59:47.937Z [ERROR] Error: Error: {"stack":"Error: Failed to export 22 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 22 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T15:00:19.130Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-11-25T15:00:19.130Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-11-25T15:00:19.130Z [DEBUG] Metrics export disabled by organization setting
+2026-11-25T15:02:44.867Z [DEBUG] AutoUpdaterWrapper: Installation type: npm-global
+2026-11-25T15:02:45.024Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T15:02:45.042Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T15:02:45.042Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T15:02:45.043Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T15:02:45.339Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-11-25T15:02:45.339Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T15:02:45.339Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-11-25T15:02:45.399Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T15:02:45.399Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T15:02:45.399Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T15:02:45.399Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T15:02:45.741Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T15:02:45.748Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T15:02:45.748Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T15:02:45.748Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T15:02:45.784Z [DEBUG] Getting matching hook commands for PreCompact with query: auto
+2026-11-25T15:02:45.784Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T15:02:45.784Z [DEBUG] Matched 0 unique hooks for query "auto" (0 before deduplication)
+2026-11-25T15:02:45.866Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T15:02:45.883Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T15:02:45.883Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T15:02:45.883Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T15:02:45.960Z [ERROR] Error: Error: 1P event logging: 33 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T15:02:45.960Z [ERROR] Error: Error: {"stack":"Error: Failed to export 33 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 33 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T15:02:46.032Z [DEBUG] AutoUpdater: Detected installation type: npm-global
+2026-11-25T15:02:46.032Z [DEBUG] AutoUpdater: Using global update method
+2026-11-25T15:02:46.123Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T15:02:46.123Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T15:02:46.413Z [ERROR] hK1: hK1: Insufficient permissions for global npm install.
+    at Uq0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2929:1139)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async XEA (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2939:43)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4935:32615
+2026-11-25T15:02:47.329Z [DEBUG] Stream started - received first chunk
+2026-11-25T15:02:50.982Z [ERROR] Error: Error: 1P event logging: 8 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T15:02:50.982Z [ERROR] Error: Error: {"stack":"Error: Failed to export 8 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 8 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T15:03:51.949Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T15:03:51.949Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T15:03:51.951Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T15:03:52.408Z [DEBUG] Getting matching hook commands for SessionStart with query: compact
+2026-11-25T15:03:52.408Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T15:03:52.408Z [DEBUG] Matched 0 unique hooks for query "compact" (0 before deduplication)
+2026-11-25T15:03:52.413Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T15:03:52.521Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T15:03:52.521Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T15:03:52.521Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T15:03:53.257Z [DEBUG] Stream started - received first chunk
+2026-11-25T15:03:56.947Z [ERROR] Error: Error: 1P event logging: 14 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T15:03:56.947Z [ERROR] Error: Error: {"stack":"Error: Failed to export 14 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 14 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T15:04:03.825Z [ERROR] Error: Error: 1P event logging: 1 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T15:04:03.825Z [ERROR] Error: Error: {"stack":"Error: Failed to export 1 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 1 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T15:04:30.975Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-11-25T15:04:30.975Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T15:04:30.975Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-11-25T15:04:35.864Z [ERROR] Error: Error: 1P event logging: 3 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T15:04:35.864Z [ERROR] Error: Error: {"stack":"Error: Failed to export 3 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 3 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T15:05:19.131Z [DEBUG] Metrics opt-out check failed: No API key available
+2026-11-25T15:05:19.131Z [DEBUG] Metrics check failed, defaulting to disabled
+2026-11-25T15:05:19.131Z [DEBUG] Metrics export disabled by organization setting
+2026-11-25T15:05:31.050Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-11-25T15:05:31.050Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T15:05:31.050Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-11-25T15:05:36.078Z [ERROR] Error: Error: 1P event logging: 1 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T15:05:36.078Z [ERROR] Error: Error: {"stack":"Error: Failed to export 1 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 1 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T15:23:41.937Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T15:23:41.937Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T15:23:41.937Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T15:23:41.937Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T15:23:41.965Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-11-25T15:23:41.965Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T15:23:41.965Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-11-25T15:23:41.966Z [DEBUG] FileHistory: Making snapshot for message 5971afaa-4c7e-4577-9397-8fab48f8b6af
+2026-11-25T15:23:42.168Z [DEBUG] FileHistory: Missing tracked file: py3.13-exercises-and-project/Project-Harness Engineering with Claude and Claude Code/reflection-brief-COMPLETED.md
+2026-11-25T15:23:42.185Z [DEBUG] FileHistory: Added snapshot for 5971afaa-4c7e-4577-9397-8fab48f8b6af, tracking 29 files
+2026-11-25T15:23:42.242Z [DEBUG] Tool search disabled: MCPSearchTool is not available (may have been disallowed via disallowedTools).
+2026-11-25T15:23:42.243Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T15:23:42.243Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T15:23:42.246Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T15:23:42.322Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T15:23:42.332Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T15:23:42.332Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T15:23:42.332Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T15:23:42.619Z [ERROR] Error streaming, falling back to non-streaming mode: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T15:23:42.619Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T15:23:42.619Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T15:23:42.619Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T15:23:42.811Z [ERROR] Error in non-streaming fallback: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+2026-11-25T15:23:42.811Z [ERROR] Error: Error: 400 {"error":{"code":null,"message":"Invalid Model. Policy does not include claude-haiku-5-5","param":null,"type":"invalid_request_error"}}
+    at D9.generate (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:491:33583)
+    at hP.makeStatusError (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:2195)
+    at hP.makeRequest (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:914:5420)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BJ9.v51.model (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6288)
+    at async v51 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1064:97940)
+    at async BJ9 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4371:6442)
+    at async file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3557
+    at async LZ0 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:1065:1998)
+    at async Pd (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:4369:3528)
+2026-11-25T15:23:43.027Z [DEBUG] Stream started - received first chunk
+2026-11-25T15:23:46.102Z [DEBUG] executePreToolHooks called for tool: Read
+2026-11-25T15:23:46.107Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-11-25T15:23:46.107Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T15:23:46.107Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-11-25T15:23:46.137Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-11-25T15:23:46.137Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T15:23:46.137Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-11-25T15:23:46.167Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-11-25T15:23:46.167Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-11-25T15:23:46.167Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-11-25T15:23:46.167Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-11-25T15:23:46.187Z [DEBUG] Auto tool search disabled: 0 chars (threshold: 50000, 10% of context)
+2026-11-25T15:23:46.249Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-11-25T15:23:46.249Z [DEBUG] [API:auth] OAuth token check starting
+2026-11-25T15:23:46.249Z [DEBUG] [API:auth] OAuth token check complete
+2026-11-25T15:23:46.933Z [DEBUG] Stream started - received first chunk
+2026-11-25T15:23:46.938Z [ERROR] Error: Error: 1P event logging: 28 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T15:23:46.938Z [ERROR] Error: Error: {"stack":"Error: Failed to export 28 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 28 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T15:24:08.863Z [ERROR] Error: Error: 1P event logging: 1 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T15:24:08.863Z [ERROR] Error: Error: {"stack":"Error: Failed to export 1 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 1 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245
+2026-11-25T15:24:10.349Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-11-25T15:24:10.349Z [DEBUG] Found 0 hook matchers in settings
+2026-11-25T15:24:10.349Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-11-25T15:24:15.296Z [ERROR] Error: Error: 1P event logging: 2 events failed to export
+    at ua1.queueFailedEvents (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:2038)
+    at async ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1195)
+2026-11-25T15:24:15.296Z [ERROR] Error: Error: {"stack":"Error: Failed to export 2 events\n    at ua1.doExport (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:261:1297)","message":"Failed to export 2 events","name":"Error"}
+    at TH0.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:2283:34862)
+    at Zn1.error (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:10521)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:41546
+    at $u3 (file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:255:42092)
+    at file:///usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js:256:20245

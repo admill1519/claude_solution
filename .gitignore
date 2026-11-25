@@ -21,7 +21,6 @@ uv.lock
 .ruff_cache/
 .coverage
 htmlcov/
-*.json
 node_modules/
 .cache/
 .npm/

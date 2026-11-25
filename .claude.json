@@ -1,0 +1,146 @@
+{
+  "numStartups": 1,
+  "customApiKeyResponses": {
+    "approved": [],
+    "rejected": [
+      "Fc0WKrq5ANbmVp0LAVdd"
+    ]
+  },
+  "tipsHistory": {
+    "new-user-warmup": 1,
+    "plan-mode-for-complex-tasks": 1,
+    "memory-command": 1,
+    "theme-command": 1,
+    "status-line": 1,
+    "stickers-command": 1,
+    "prompt-queue": 1,
+    "enter-to-steer-in-relatime": 1,
+    "todo-list": 1,
+    "install-github-app": 1,
+    "install-slack-app": 1,
+    "drag-and-drop-images": 1,
+    "double-esc-code-restore": 1,
+    "continue": 1,
+    "shift-tab": 1,
+    "image-paste": 1,
+    "ultrathink-keyword": 1,
+    "web-app": 1,
+    "mobile-app": 1
+  },
+  "cachedStatsigGates": {
+    "tengu_prompt_suggestion": false,
+    "tengu_session_memory": false
+  },
+  "cachedGrowthBookFeatures": {
+    "tengu_1p_event_batch_config": {
+      "scheduledDelayMillis": 30000,
+      "maxExportBatchSize": 400,
+      "maxQueueSize": 8192,
+      "path": "/api/event_logging/v2/batch"
+    },
+    "tengu_mcp_tool_search": true,
+    "tengu_scratch": false,
+    "tengu_disable_bypass_permissions_mode": false,
+    "tengu_log_segment_events": false,
+    "tengu_log_datadog_events": true,
+    "tengu_event_sampling_config": {
+      "tengu_plugin_name_collision": {
+        "sample_rate": 0.01
+      },
+      "tengu_session_file_read": {
+        "sample_rate": 0.01
+      },
+      "tengu_skill_file_changed": {
+        "sample_rate": 0
+      },
+      "tengu_api_before_normalize": {
+        "sample_rate": 0
+      },
+      "tengu_api_after_normalize": {
+        "sample_rate": 0
+      },
+      "tengu_query_before_attachments": {
+        "sample_rate": 0
+      },
+      "tengu_query_after_attachments": {
+        "sample_rate": 0
+      },
+      "tengu_api_cache_breakpoints": {
+        "sample_rate": 0.01
+      },
+      "tengu_sysprompt_block": {
+        "sample_rate": 0.01
+      },
+      "tengu_sysprompt_boundary_found": {
+        "sample_rate": 0.01
+      },
+      "tengu_sysprompt_missing_boundary_marker": {
+        "sample_rate": 0.01
+      }
+    },
+    "tengu_tool_pear": false,
+    "tengu_thinkback": false,
+    "tengu_sumi": false,
+    "tengu_c4w_usage_limit_notifications_enabled": true,
+    "tengu-top-of-feed-tip": {
+      "tip": "",
+      "color": ""
+    },
+    "tengu_react_vulnerability_warning": false,
+    "tengu_code_diff_cli": true,
+    "tengu_post_compact_survey": false,
+    "tengu_tool_search_unsupported_models": [
+      "claude-3-5-haiku",
+      "claude-3-haiku",
+      "claude-3-opus",
+      "claude-3-sonnet",
+      "claude-3-5-sonnet",
+      "claude-3-7-sonnet"
+    ],
+    "tengu_ant_attribution_header_new": false,
+    "enhanced_telemetry_beta": false,
+    "tengu_streaming_tool_execution2": false,
+    "tengu_permission_explainer": false,
+    "tengu_compact_streaming_retry": false
+  },
+  "userID": "5ea9184ed49cee78e4a39d20ffd1e25ba54499141ef8f589e5d9c06de770b896",
+  "firstStartTime": "2026-11-25T11:54:57.925Z",
+  "sonnet45MigrationComplete": true,
+  "opus45MigrationComplete": true,
+  "opusProMigrationComplete": true,
+  "thinkingMigrationComplete": true,
+  "cachedChromeExtensionInstalled": false,
+  "changelogLastFetched": 1795607721121,
+  "shiftEnterKeyBindingInstalled": true,
+  "hasCompletedOnboarding": true,
+  "lastOnboardingVersion": "2.1.7",
+  "lastReleaseNotesSeen": "2.1.7",
+  "projects": {
+    "/voc/work": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": [],
+      "reactVulnerabilityCache": {
+        "detected": false,
+        "package": null,
+        "packageName": null,
+        "version": null,
+        "packageManager": null
+      },
+      "hasCompletedProjectOnboarding": true
+    }
+  },
+  "officialMarketplaceAutoInstallAttempted": true,
+  "officialMarketplaceAutoInstalled": false,
+  "officialMarketplaceAutoInstallFailReason": "unknown",
+  "officialMarketplaceAutoInstallRetryCount": 1,
+  "officialMarketplaceAutoInstallLastAttemptTime": 1795607752151,
+  "officialMarketplaceAutoInstallNextRetryTime": 1795614952151
+}
