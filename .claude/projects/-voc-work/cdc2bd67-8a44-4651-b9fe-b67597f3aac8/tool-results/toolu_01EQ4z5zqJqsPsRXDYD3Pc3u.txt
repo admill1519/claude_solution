@@ -1,0 +1,7 @@
+total 36
+drwxrwx--- 6 labsuser 48 6144 Nov 25 11:24 .
+drwxrwx--- 7 labsuser 48 6144 Nov 25 11:24 ..
+drwxrwx--- 4 labsuser 48 6144 Nov 25 11:24 01-tiered-state
+drwxrwx--- 4 labsuser 48 6144 Nov 25 11:24 02-invocation-pipeline
+drwxrwx--- 4 labsuser 48 6144 Nov 25 11:24 03-crash-recovery
+drwxrwx--- 4 labsuser 48 6144 Nov 25 11:24 04-fork-scratchpad

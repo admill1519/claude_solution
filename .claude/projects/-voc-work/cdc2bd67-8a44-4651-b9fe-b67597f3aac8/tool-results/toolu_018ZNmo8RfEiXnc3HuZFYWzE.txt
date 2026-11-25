@@ -1,0 +1,134 @@
+     1→"""The agentic loop.
+     2→
+     3→The defining contract:
+     4→- Control flow is driven by `response.stop_reason`.
+     5→- Loop continues iff stop_reason == "tool_use".
+     6→- Loop returns iff stop_reason == "end_turn".
+     7→- Any other stop_reason raises UnexpectedStopReason.
+     8→
+     9→No string-membership tests against assistant text drive control flow here.
+    10→No integer-literal iteration cap is the primary stopping mechanism.
+    11→A Budget (token + wall-clock, sourced from config) is the safety net and raises
+    12→BudgetExceeded if hit — it never silently truncates.
+    13→"""
+    14→
+    15→import time
+    16→from collections.abc import Callable
+    17→from dataclasses import dataclass, field
+    18→from typing import Any, Protocol
+    19→
+    20→from claims_intake.budget import Budget
+    21→from claims_intake.tracer import Tracer
+    22→
+    23→
+    24→class UnexpectedStopReason(Exception):
+    25→    pass
+    26→
+    27→
+    28→ToolExecutor = Callable[[str, dict[str, Any]], str]
+    29→"""Takes (tool_name, tool_input) and returns the tool_result content as a string.
+    30→Errors are returned as a serialized JSON string with is_error=true; never raised."""
+    31→
+    32→
+    33→class MessagesClient(Protocol):
+    34→    def create(self, **kwargs: Any) -> Any: ...
+    35→
+    36→
+    37→@dataclass
+    38→class FinalState:
+    39→    messages: list[dict[str, Any]]
+    40→    total_input_tokens: int
+    41→    total_output_tokens: int
+    42→    turn_count: int
+    43→    final_content: list[Any] = field(default_factory=list)
+    44→
+    45→
+    46→def run(
+    47→    *,
+    48→    client: Any,
+    49→    model: str,
+    50→    system: str,
+    51→    tools: list[dict[str, Any]],
+    52→    messages: list[dict[str, Any]],
+    53→    tool_executor: ToolExecutor,
+    54→    budget: Budget,
+    55→    tracer: Tracer,
+    56→    max_tokens: int = 4096,
+    57→) -> FinalState:
+    58→    """Run the agentic loop until the model returns stop_reason == "end_turn".
+    59→
+    60→    The loop condition is `response.stop_reason == "tool_use"` — nothing else.
+    61→    There is no `while turn < N` cap. The Budget object is the safety mechanism.
+    62→    """
+    63→    working_messages = list(messages)
+    64→    turn = 0
+    65→    total_input = 0
+    66→    total_output = 0
+    67→
+    68→    while True:
+    69→        turn += 1
+    70→        budget.check()
+    71→        t0 = time.monotonic()
+    72→        response = client.messages.create(
+    73→            model=model,
+    74→            max_tokens=max_tokens,
+    75→            system=system,
+    76→            tools=tools,
+    77→            messages=working_messages,
+    78→        )
+    79→        latency_ms = (time.monotonic() - t0) * 1000.0
+    80→
+    81→        input_tokens = int(response.usage.input_tokens)
+    82→        output_tokens = int(response.usage.output_tokens)
+    83→        total_input += input_tokens
+    84→        total_output += output_tokens
+    85→        budget.record_input_tokens(input_tokens)
+    86→
+    87→        tool_calls = [
+    88→            {"id": b.id, "name": b.name, "input": b.input}
+    89→            for b in response.content
+    90→            if getattr(b, "type", None) == "tool_use"
+    91→        ]
+    92→        tracer.write(
+    93→            {
+    94→                "turn": turn,
+    95→                "stop_reason": response.stop_reason,
+    96→                "tool_calls": tool_calls,
+    97→                "latency_ms": round(latency_ms, 1),
+    98→                "input_tokens": input_tokens,
+    99→                "output_tokens": output_tokens,
+   100→            }
+   101→        )
+   102→
+   103→        if response.stop_reason == "end_turn":
+   104→            working_messages.append({"role": "assistant", "content": response.content})
+   105→            return FinalState(
+   106→                messages=working_messages,
+   107→                total_input_tokens=total_input,
+   108→                total_output_tokens=total_output,
+   109→                turn_count=turn,
+   110→                final_content=list(response.content),
+   111→            )
+   112→
+   113→        if response.stop_reason == "tool_use":
+   114→            working_messages.append({"role": "assistant", "content": response.content})
+   115→            tool_results: list[dict[str, Any]] = []
+   116→            for block in response.content:
+   117→                if getattr(block, "type", None) != "tool_use":
+   118→                    continue
+   119→                result_content = tool_executor(block.name, dict(block.input))
+   120→                tool_results.append(
+   121→                    {
+   122→                        "type": "tool_result",
+   123→                        "tool_use_id": block.id,
+   124→                        "content": result_content,
+   125→                    }
+   126→                )
+   127→            working_messages.append({"role": "user", "content": tool_results})
+   128→            continue
+   129→
+   130→        raise UnexpectedStopReason(
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

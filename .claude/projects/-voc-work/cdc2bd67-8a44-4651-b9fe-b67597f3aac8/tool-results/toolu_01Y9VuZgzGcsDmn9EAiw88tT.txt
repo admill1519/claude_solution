@@ -1,0 +1,40 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/tests/test_antipatterns.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+    52→
+    53→# ---------------------------------------------------------------------------
+    54→# Anti-pattern 2 — no integer-literal iteration cap as the primary stop mechanism
+    55→# ---------------------------------------------------------------------------
+    56→def test_no_integer_literal_iteration_cap_in_loop() -> None:
+    57→    """No `for _ in range(<int literal>)` and no `while <var> < <int literal>` in loop.py.
+    58→
+    59→    Token/wall-clock/config-sourced budgets are explicitly allowed because they
+    60→    read their cap from a `Budget` instance (an attribute access or a function
+    61→    arg), not from a literal. If you need a cap, pass it in.
+    62→    """
+    63→    tree = _parse(LOOP_PY)
+    64→    offenders = []
+    65→
+    66→    for node in ast.walk(tree):
+    67→        # Check for `for _ in range(<int literal>, ...)`
+    68→        if isinstance(node, ast.For):
+    69→            if isinstance(node.iter, ast.Call):
+    70→                if isinstance(node.iter.func, ast.Name) and node.iter.func.id == "range":
+    71→                    # Check if any argument is an int Constant
+    72→                    for arg in node.iter.args:
+    73→                        if isinstance(arg, ast.Constant) and isinstance(arg.value, int):
+    74→                            offenders.append(f"for loop with range({arg.value})")
+    75→
+    76→        # Check for `while <var> < <int literal>`
+    77→        elif isinstance(node, ast.While):
+    78→            if isinstance(node.test, ast.Compare):
+    79→                for comp in node.test.comparators:
+    80→                    if isinstance(comp, ast.Constant) and isinstance(comp.value, int):
+    81→                        offenders.append(f"while loop comparing to int literal {comp.value}")
+    82→
+    83→    assert not offenders, (
+    84→        f"Found integer-literal iteration caps: {offenders}. "
+    85→        "Use a Budget instead."
+    86→    )
+    87→
+    88→
+    89→# ---------------------------------------------------------------------------
+    90→# Positive evidence — stop_reason is the value that breaks the while loop

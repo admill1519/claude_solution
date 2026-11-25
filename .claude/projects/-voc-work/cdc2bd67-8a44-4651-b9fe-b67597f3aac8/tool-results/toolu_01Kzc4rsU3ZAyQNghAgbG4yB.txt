@@ -1,0 +1,46 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/tests/test_antipatterns.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+   123→
+   124→# ---------------------------------------------------------------------------
+   125→# Decision-tree-in-Python — no `if claim_type == "..."` branches in the package
+   126→# ---------------------------------------------------------------------------
+   127→def test_no_claim_type_equality_branching_in_package() -> None:
+   128→    """Decision logic about claim type lives in the model, not in Python.
+   129→
+   130→    tools.py is exempt (it defines the enum in input_schema).
+   131→    pricing.py is exempt (it may map claim_type to per-queue cost weights).
+   132→    """
+   133→    offenders = []
+   134→    exempt_files = {"tools.py", "pricing.py", "__init__.py"}
+   135→
+   136→    # Walk every .py file under PKG
+   137→    for py_file in PKG.rglob("*.py"):
+   138→        # Skip exempt files
+   139→        if py_file.name in exempt_files:
+   140→            continue
+   141→
+   142→        tree = _parse(py_file)
+   143→
+   144→        # Find every ast.Compare with ast.Eq operator and claim_type on the left
+   145→        for node in ast.walk(tree):
+   146→            if isinstance(node, ast.Compare):
+   147→                # Check if any operator is ast.Eq
+   148→                if any(isinstance(op, ast.Eq) for op in node.ops):
+   149→                    # Check if left operand is Name or Attribute named "claim_type"
+   150→                    is_claim_type = False
+   151→                    if isinstance(node.left, ast.Name) and node.left.id == "claim_type":
+   152→                        is_claim_type = True
+   153→                    elif isinstance(node.left, ast.Attribute) and node.left.attr == "claim_type":
+   154→                        is_claim_type = True
+   155→
+   156→                    # Check if any comparator is a string Constant
+   157→                    if is_claim_type:
+   158→                        for comp in node.comparators:
+   159→                            if isinstance(comp, ast.Constant) and isinstance(comp.value, str):
+   160→                                offenders.append(
+   161→                                    f"{py_file.name}:{node.lineno}: {ast.unparse(node)}"
+   162→                                )
+   163→
+   164→    assert not offenders, (
+   165→        f"Found claim_type equality branches (move to model via tool calls): {offenders}"
+   166→    )
+   167→

@@ -1,0 +1,32 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/claims_intake/tools.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+   197→        "case_facts_count": len(session.case_facts),
+   198→    })
+   199→
+   200→
+   201→def _t_classify_claim(session: ClaimSession, inp: dict[str, Any]) -> str:
+   202→    claim_type = inp.get("claim_type")
+   203→    confidence = inp.get("confidence")
+   204→    rationale = inp.get("rationale")
+   205→
+   206→    if claim_type not in CLAIM_TYPES:
+   207→        return _err("permanent", False, f"claim_type must be one of {CLAIM_TYPES}")
+   208→    if not isinstance(confidence, (int, float)) or not (0 <= confidence <= 1):
+   209→        return _err("permanent", False, "confidence must be a number between 0 and 1")
+   210→    if not isinstance(rationale, str):
+   211→        return _err("permanent", False, "rationale must be a string")
+   212→
+   213→    session.classification = {
+   214→        "claim_type": claim_type,
+   215→        "confidence": confidence,
+   216→        "rationale": rationale,
+   217→    }
+   218→    return _ok({
+   219→        "recorded": True,
+   220→        "claim_type": claim_type,
+   221→        "confidence": confidence,
+   222→        "rationale": rationale,
+   223→    })
+   224→
+   225→
+   226→def _t_assess_severity(session: ClaimSession, inp: dict[str, Any]) -> str:
+   227→    # TODO: Validate severity (in SEVERITIES) and rationale (string).

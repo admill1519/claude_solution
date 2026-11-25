@@ -1,0 +1,30 @@
+---
+description: Conventions for co-located test files
+paths:
+  - "**/*.test.tsx"
+  - "**/*.test.ts"
+---
+
+# Test file rules
+
+Loads when editing any co-located test file (`*.test.ts` or `*.test.tsx`).
+
+## Test structure and isolation
+
+- Use `vi.mock()` to mock external dependencies (HTTP clients, third-party libraries). Do **not** mock the database or repository layer—tests must run against a real test database.
+- Each test file should be independent: set up its own fixtures, tear down after itself. Never rely on global state or test order.
+- Import test utilities from `tests/fixtures/` or `tests/helpers/` — never duplicate setup code across files.
+- Component tests render via `render()` from `@testing-library/react` and inspect the DOM. Never inspect component instance state.
+
+## Assertions and test clarity
+
+- Use `expect().toEqual()` for exact object comparisons and `expect().toMatchObject()` when you only care about a subset of properties.
+- Never use snapshot testing (`toMatchSnapshot()`) without explicit review and documentation—snapshots hide intent and can mask regressions.
+- Each `test()` block should verify one behavior. If a test name uses "and" or "or," split it into two tests.
+- When testing API handlers, call them directly: `const { status, body } = await handler(mockRequest)`. Do not spin up an HTTP server.
+
+## Async and timing
+
+- Never use `setTimeout()` in tests—use `vi.useFakeTimers()` and `vi.runAllTimers()` instead.
+- Always `await` async operations. If you see a test that doesn't await a promise, it's a bug waiting to happen.
+- For component tests, use `waitFor()` from `@testing-library/react` to handle async updates; never use `act()` without a good reason.

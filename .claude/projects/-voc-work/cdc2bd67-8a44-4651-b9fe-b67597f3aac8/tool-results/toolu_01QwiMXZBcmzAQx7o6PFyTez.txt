@@ -1,0 +1,85 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/starter/claims_intake/tools.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+   101→                "rationale": {"type": "string"},
+   102→            },
+   103→            "required": ["severity", "rationale"],
+   104→        },
+   105→    },
+   106→    {
+   107→        "name": "request_clarification",
+   108→        "description": (
+   109→            "Ask the claimant one clarifying question to resolve ambiguity between claim types. "
+   110→            "Returns a scripted reply if the question matches a preset response, or NO_RESPONSE if unscripted."
+   111→        ),
+   112→        "input_schema": {
+   113→            "type": "object",
+   114→            "properties": {
+   115→                "question": {"type": "string", "description": "The clarifying question to ask the claimant"},
+   116→                "ambiguity_between": {
+   117→                    "type": "array",
+   118→                    "items": {"type": "string"},
+   119→                    "description": "List of claim types under consideration (>=2)",
+   120→                },
+   121→            },
+   122→            "required": ["question", "ambiguity_between"],
+   123→        },
+   124→    },
+   125→    {
+   126→        "name": "route_to_adjuster",
+   127→        "description": (
+   128→            "Route the claim to an adjuster queue for processing. TERMINAL TOOL. "
+   129→            "Call this when classification confidence is >= 0.6 and severity has been assessed. "
+   130→            "The claim is written to queues/<queue>.jsonl and the conversation ends."
+   131→        ),
+   132→        "input_schema": {
+   133→            "type": "object",
+   134→            "properties": {
+   135→                "queue": {"type": "string", "enum": CLAIM_TYPES, "description": "Target adjuster queue"},
+   136→                "claim_summary": {"type": "string", "description": "Brief summary of the claim for the adjuster"},
+   137→            },
+   138→            "required": ["queue", "claim_summary"],
+   139→        },
+   140→    },
+   141→    {
+   142→        "name": "escalate_to_human",
+   143→        "description": (
+   144→            "Escalate the claim to a human adjuster for manual review. TERMINAL TOOL. "
+   145→            "Call this when the claim cannot be routed safely (low confidence or complex facts). "
+   146→            "The escalation is written to escalations.jsonl and the conversation ends."
+   147→        ),
+   148→        "input_schema": {
+   149→            "type": "object",
+   150→            "properties": {
+   151→                "reason": {"type": "string", "description": "Reason for escalation (e.g., low_confidence, ambiguous_facts)"},
+   152→                "structured_summary": {
+   153→                    "type": "object",
+   154→                    "properties": {
+   155→                        "policy_id": {"type": "string"},
+   156→                        "root_cause": {"type": "string", "description": "Why escalation is needed"},
+   157→                        "candidate_claim_types": {"type": "array", "items": {"type": "string"}},
+   158→                        "case_facts": {"type": "object", "description": "Key facts extracted so far"},
+   159→                        "recommended_action": {"type": "string", "description": "What the human should do next"},
+   160→                        "confidence": {
+   161→                            "type": "number",
+   162→                            "minimum": 0.0,
+   163→                            "maximum": 1.0,
+   164→                            "description": "Overall confidence (even when escalating)",
+   165→                        },
+   166→                    },
+   167→                    "required": [
+   168→                        "policy_id",
+   169→                        "root_cause",
+   170→                        "candidate_claim_types",
+   171→                        "case_facts",
+   172→                        "recommended_action",
+   173→                        "confidence",
+   174→                    ],
+   175→                },
+   176→            },
+   177→            "required": ["reason", "structured_summary"],
+   178→        },
+   179→    },
+   180→]
+   181→
+   182→# ----------------------------------------------------------------------------
+   183→# Errors — Graceful Tool Failure shape
+   184→# ----------------------------------------------------------------------------

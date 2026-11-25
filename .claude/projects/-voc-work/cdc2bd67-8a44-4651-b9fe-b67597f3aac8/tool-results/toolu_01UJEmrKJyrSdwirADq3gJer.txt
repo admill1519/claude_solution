@@ -1,0 +1,20 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/claims_intake/tools.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+   156→# Errors — Graceful Tool Failure shape
+   157→# ----------------------------------------------------------------------------
+   158→
+   159→
+   160→def _err(category: str, retryable: bool, message: str) -> str:
+   161→    return json.dumps({
+   162→        "is_error": True,
+   163→        "error_category": category,
+   164→        "is_retryable": retryable,
+   165→        "message": message,
+   166→    })
+   167→
+   168→
+   169→def _ok(payload: dict[str, Any]) -> str:
+   170→    return json.dumps(payload)
+   171→
+   172→
+   173→# ----------------------------------------------------------------------------
+   174→# Tool implementations

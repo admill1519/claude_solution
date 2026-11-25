@@ -1,0 +1,228 @@
+Exit code 1
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-8.4.2, pluggy-1.7.0
+rootdir: /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/01-loop/starter
+configfile: pyproject.toml
+plugins: anyio-4.16.0
+collected 5 items
+
+tests/test_loop.py FFFFF                                                 [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_loop_terminates_on_end_turn _______________________
+
+    def test_loop_terminates_on_end_turn() -> None:
+        """A response with stop_reason=='end_turn' returns immediately."""
+        scripted = [
+            FakeResponse(
+                content=[FakeBlock(type="text", text="done")],
+                stop_reason="end_turn",
+                usage=FakeUsage(input_tokens=10, output_tokens=5),
+            ),
+        ]
+        client = FakeClient(messages=FakeMessages(scripted=scripted))
+        tracer = NullTracer()
+    
+>       state = run(
+            client=client,
+            model="fake-model",
+            system="sys",
+            tools=[],
+            messages=[{"role": "user", "content": "hi"}],
+            tool_executor=_noop_executor,
+            budget=_budget(),
+            tracer=tracer,
+        )
+
+tests/test_loop.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def run(
+        *,
+        client: Any,
+        model: str,
+        system: str,
+        tools: list[dict[str, Any]],
+        messages: list[dict[str, Any]],
+        tool_executor: ToolExecutor,
+        budget: Budget,
+        tracer: Tracer,
+        max_tokens: int = 4096,
+    ) -> FinalState:
+        """Run the agentic loop until the model returns stop_reason == "end_turn".
+    
+        The loop condition is `response.stop_reason == "tool_use"` — nothing else.
+        There is no `while turn < N` cap. The Budget object is the safety mechanism.
+        """
+        working_messages = list(messages)
+        turn = 0
+        total_input = 0
+        total_output = 0
+    
+        while True:
+            turn += 1
+            budget.check()
+            t0 = time.monotonic()
+            response = client.messages.create(
+                model=model,
+                max_tokens=max_tokens,
+                system=system,
+                tools=tools,
+                messages=working_messages,
+            )
+            latency_ms = (time.monotonic() - t0) * 1000.0
+    
+            input_tokens = int(response.usage.input_tokens)
+            output_tokens = int(response.usage.output_tokens)
+            total_input += input_tokens
+            total_output += output_tokens
+            budget.record_input_tokens(input_tokens)
+    
+            # TODO:Build a trace record for this turn and write it.
+            # The record is a dict with these keys:
+            #     turn:           the turn counter
+            #     stop_reason:    response.stop_reason
+            #     tool_calls:     a list of {id, name, input} dicts, one per tool_use block
+            #                     in response.content (skip non-tool_use blocks)
+            #     latency_ms:     round(latency_ms, 1)
+            #     input_tokens:   input_tokens
+            #     output_tokens:  output_tokens
+            # Call `tracer.write(record)`.
+    
+            # TODO:Triage on response.stop_reason. The whole point of the
+            # agentic loop is that THIS is what drives control flow — not the message text,
+            # not a turn count, not the presence of a magic string.
+            #
+            # Case 1: response.stop_reason == "end_turn"
+            #   Append the assistant turn to working_messages:
+            #       {"role": "assistant", "content": response.content}
+            #   Return a FinalState carrying working_messages, the running token totals,
+            #   the turn count, and the final assistant content.
+            #
+            # Case 2: response.stop_reason == "tool_use"
+            #   Append the assistant turn to working_messages (same shape as Case 1).
+            #   For every tool_use block in response.content, call
+            #       tool_executor(block.name, dict(block.input))
+            #   and collect the result into a tool_result block:
+            #       {"type": "tool_result", "tool_use_id": block.id, "content": <result>}
+            #   ALL of these tool_result blocks go into ONE user turn together — not one
+            #   user turn per tool. Append that single user turn to working_messages and
+            #   `continue` the loop.
+            #
+            # Case 3: anything else
+            #   Raise UnexpectedStopReason naming the turn and the offending stop_reason.
+            #   Do NOT silently retry, do NOT guess, do NOT treat max_tokens as success.
+>           raise NotImplementedError("Exercise 1: implement the stop_reason triage")
+E           NotImpl
+
+... [15666 characters truncated] ...
+
+ck(type="text", text="done")],
+                stop_reason="end_turn",
+                usage=FakeUsage(input_tokens=10, output_tokens=5),
+            ),
+        ]
+        client = FakeClient(messages=FakeMessages(scripted=scripted))
+        tight_budget = Budget(max_input_tokens=1000, max_wall_clock_s=60.0)
+    
+        with pytest.raises(BudgetExceeded):
+>           run(
+                client=client,
+                model="fake-model",
+                system="sys",
+                tools=[],
+                messages=[{"role": "user", "content": "x"}],
+                tool_executor=_noop_executor,
+                budget=tight_budget,
+                tracer=NullTracer(),
+            )
+
+tests/test_loop.py:179: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def run(
+        *,
+        client: Any,
+        model: str,
+        system: str,
+        tools: list[dict[str, Any]],
+        messages: list[dict[str, Any]],
+        tool_executor: ToolExecutor,
+        budget: Budget,
+        tracer: Tracer,
+        max_tokens: int = 4096,
+    ) -> FinalState:
+        """Run the agentic loop until the model returns stop_reason == "end_turn".
+    
+        The loop condition is `response.stop_reason == "tool_use"` — nothing else.
+        There is no `while turn < N` cap. The Budget object is the safety mechanism.
+        """
+        working_messages = list(messages)
+        turn = 0
+        total_input = 0
+        total_output = 0
+    
+        while True:
+            turn += 1
+            budget.check()
+            t0 = time.monotonic()
+            response = client.messages.create(
+                model=model,
+                max_tokens=max_tokens,
+                system=system,
+                tools=tools,
+                messages=working_messages,
+            )
+            latency_ms = (time.monotonic() - t0) * 1000.0
+    
+            input_tokens = int(response.usage.input_tokens)
+            output_tokens = int(response.usage.output_tokens)
+            total_input += input_tokens
+            total_output += output_tokens
+            budget.record_input_tokens(input_tokens)
+    
+            # TODO:Build a trace record for this turn and write it.
+            # The record is a dict with these keys:
+            #     turn:           the turn counter
+            #     stop_reason:    response.stop_reason
+            #     tool_calls:     a list of {id, name, input} dicts, one per tool_use block
+            #                     in response.content (skip non-tool_use blocks)
+            #     latency_ms:     round(latency_ms, 1)
+            #     input_tokens:   input_tokens
+            #     output_tokens:  output_tokens
+            # Call `tracer.write(record)`.
+    
+            # TODO:Triage on response.stop_reason. The whole point of the
+            # agentic loop is that THIS is what drives control flow — not the message text,
+            # not a turn count, not the presence of a magic string.
+            #
+            # Case 1: response.stop_reason == "end_turn"
+            #   Append the assistant turn to working_messages:
+            #       {"role": "assistant", "content": response.content}
+            #   Return a FinalState carrying working_messages, the running token totals,
+            #   the turn count, and the final assistant content.
+            #
+            # Case 2: response.stop_reason == "tool_use"
+            #   Append the assistant turn to working_messages (same shape as Case 1).
+            #   For every tool_use block in response.content, call
+            #       tool_executor(block.name, dict(block.input))
+            #   and collect the result into a tool_result block:
+            #       {"type": "tool_result", "tool_use_id": block.id, "content": <result>}
+            #   ALL of these tool_result blocks go into ONE user turn together — not one
+            #   user turn per tool. Append that single user turn to working_messages and
+            #   `continue` the loop.
+            #
+            # Case 3: anything else
+            #   Raise UnexpectedStopReason naming the turn and the offending stop_reason.
+            #   Do NOT silently retry, do NOT guess, do NOT treat max_tokens as success.
+>           raise NotImplementedError("Exercise 1: implement the stop_reason triage")
+E           NotImplementedError: Exercise 1: implement the stop_reason triage
+
+claims_intake/loop.py:121: NotImplementedError
+=========================== short test summary info ============================
+FAILED tests/test_loop.py::test_loop_terminates_on_end_turn - NotImplementedE...
+FAILED tests/test_loop.py::test_loop_continues_on_tool_use - NotImplementedEr...
+FAILED tests/test_loop.py::test_loop_handles_multiple_tool_use_blocks_in_one_turn
+FAILED tests/test_loop.py::test_loop_raises_on_unexpected_stop_reason - NotIm...
+FAILED tests/test_loop.py::test_budget_raises_when_token_cap_exceeded - NotIm...
+============================== 5 failed in 0.68s ===============================

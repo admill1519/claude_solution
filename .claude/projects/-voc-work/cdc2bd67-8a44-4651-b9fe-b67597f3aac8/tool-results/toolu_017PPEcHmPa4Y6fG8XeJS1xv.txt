@@ -1,0 +1,7 @@
+total 36
+drwxrwx--- 6 labsuser 48 6144 Nov 25 11:24 .
+drwxrwx--- 7 labsuser 48 6144 Nov 25 11:24 ..
+drwxrwx--- 4 labsuser 48 6144 Nov 25 11:24 01-prune-tool-output
+drwxrwx--- 4 labsuser 48 6144 Nov 25 11:24 02-case-facts-block
+drwxrwx--- 4 labsuser 48 6144 Nov 25 11:24 03-compress-with-budget
+drwxrwx--- 4 labsuser 48 6144 Nov 25 11:24 04-assemble-and-locate

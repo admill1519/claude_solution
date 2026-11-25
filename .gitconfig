@@ -1,0 +1,7 @@
+[user]
+	name = Amol Rane
+	email = rayden2051@gamil.com
+[http]
+	postBuffer = 524288000
+	lowSpeedTime = 999999
+	lowSpeedLimit = 0

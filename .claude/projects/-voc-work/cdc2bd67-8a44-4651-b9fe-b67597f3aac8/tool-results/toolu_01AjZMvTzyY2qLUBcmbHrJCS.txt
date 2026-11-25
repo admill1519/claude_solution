@@ -1,0 +1,47 @@
+     1→"""Per-claim runtime state."""
+     2→
+     3→from __future__ import annotations
+     4→
+     5→from dataclasses import dataclass, field
+     6→from pathlib import Path
+     7→from typing import Any
+     8→
+     9→
+    10→@dataclass
+    11→class ClaimSession:
+    12→    """Holds the live state for one claim while the loop runs.
+    13→
+    14→    `case_facts` accumulates structured facts via record_claim_fact.
+    15→    `classification` and `severity` are set by their respective tools.
+    16→    Exactly one of `routing` or `escalation` is set when the loop terminates.
+    17→    """
+    18→
+    19→    claim_id: str
+    20→    policy_id: str
+    21→    run_dir: Path
+    22→    policies: dict[str, dict[str, Any]] = field(default_factory=dict)
+    23→    clarification_responses: dict[str, str] = field(default_factory=dict)
+    24→
+    25→    case_facts: dict[str, str] = field(default_factory=dict)
+    26→    classification: dict[str, Any] | None = None
+    27→    severity: dict[str, Any] | None = None
+    28→    clarifications_asked: list[dict[str, Any]] = field(default_factory=list)
+    29→    routing: dict[str, Any] | None = None
+    30→    escalation: dict[str, Any] | None = None
+    31→
+    32→    @property
+    33→    def terminal_called(self) -> bool:
+    34→        return self.routing is not None or self.escalation is not None
+    35→
+    36→    @property
+    37→    def outcome(self) -> str:
+    38→        if self.routing is not None:
+    39→            return "routed"
+    40→        if self.escalation is not None:
+    41→            return "escalated"
+    42→        return "incomplete"
+    43→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

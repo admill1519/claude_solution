@@ -1,0 +1,17 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/claims_intake/tools.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+   174→# Tool implementations
+   175→# ----------------------------------------------------------------------------
+   176→
+   177→
+   178→def _t_lookup_policy(session: ClaimSession, inp: dict[str, Any]) -> str:
+   179→    policy_id = inp.get("policy_id")
+   180→    if not isinstance(policy_id, str):
+   181→        return _err("permanent", False, "policy_id must be a string")
+   182→    policy = session.policies.get(policy_id)
+   183→    if policy is None:
+   184→        return _err("permanent", False, f"Policy {policy_id} not found")
+   185→    return _ok(policy)
+   186→
+   187→
+   188→def _t_record_claim_fact(session: ClaimSession, inp: dict[str, Any]) -> str:
+   189→    # TODO: Validate inp["field"] and inp["value"] are both strings; store

@@ -1,0 +1,53 @@
+     1→"""Fake Anthropic Messages client for testing the loop without API calls."""
+     2→
+     3→from dataclasses import dataclass, field
+     4→from typing import Any
+     5→
+     6→
+     7→@dataclass
+     8→class FakeBlock:
+     9→    type: str
+    10→    text: str = ""
+    11→    id: str = ""
+    12→    name: str = ""
+    13→    input: dict[str, Any] = field(default_factory=dict)
+    14→
+    15→
+    16→@dataclass
+    17→class FakeUsage:
+    18→    input_tokens: int
+    19→    output_tokens: int
+    20→
+    21→
+    22→@dataclass
+    23→class FakeResponse:
+    24→    content: list[FakeBlock]
+    25→    stop_reason: str
+    26→    usage: FakeUsage
+    27→
+    28→
+    29→@dataclass
+    30→class FakeMessages:
+    31→    """Returns scripted responses in order."""
+    32→
+    33→    scripted: list[FakeResponse]
+    34→    calls: list[dict[str, Any]] = field(default_factory=list)
+    35→
+    36→    def create(self, **kwargs: Any) -> FakeResponse:
+    37→        snapshot = dict(kwargs)
+    38→        if "messages" in snapshot:
+    39→            snapshot["messages"] = list(snapshot["messages"])
+    40→        self.calls.append(snapshot)
+    41→        if not self.scripted:
+    42→            raise AssertionError("FakeMessages: out of scripted responses")
+    43→        return self.scripted.pop(0)
+    44→
+    45→
+    46→@dataclass
+    47→class FakeClient:
+    48→    messages: FakeMessages
+    49→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

@@ -1,0 +1,275 @@
+     1→"""Fixture runner.
+     2→
+     3→`python -m claims_intake.run --all`
+     4→`python -m claims_intake.run --fixture claim_03_water_damage`
+     5→"""
+     6→
+     7→from __future__ import annotations
+     8→
+     9→import argparse
+    10→import json
+    11→import sys
+    12→import time
+    13→from dataclasses import dataclass
+    14→from datetime import datetime
+    15→from pathlib import Path
+    16→from typing import Any
+    17→
+    18→from claims_intake.budget import Budget, BudgetExceeded
+    19→from claims_intake.client import default_model, make_client
+    20→from claims_intake.loop import FinalState, UnexpectedStopReason
+    21→from claims_intake.loop import run as run_loop
+    22→from claims_intake.pricing import estimate_cost_usd
+    23→from claims_intake.session import ClaimSession
+    24→from claims_intake.system_prompt import SYSTEM_PROMPT
+    25→from claims_intake.tools import TOOL_SCHEMAS, make_executor
+    26→from claims_intake.tracer import Tracer
+    27→
+    28→ROOT = Path(__file__).resolve().parents[1]
+    29→POLICIES_PATH = ROOT / "data" / "policies.json"
+    30→FIXTURE_DIR = ROOT / "fixtures" / "claims"
+    31→RUNS_ROOT = ROOT / "runs"
+    32→
+    33→
+    34→@dataclass
+    35→class FixtureResult:
+    36→    fixture: dict[str, Any]
+    37→    session: ClaimSession
+    38→    state: FinalState | None
+    39→    error: str | None
+    40→    elapsed_s: float
+    41→    clarifications_asked: int
+    42→
+    43→
+    44→def _run_one(
+    45→    *,
+    46→    client: Any,
+    47→    model: str,
+    48→    fixture: dict[str, Any],
+    49→    policies: dict[str, dict[str, Any]],
+    50→    run_dir: Path,
+    51→    max_input_tokens: int,
+    52→    max_wall_clock_s: float,
+    53→) -> FixtureResult:
+    54→    session = ClaimSession(
+    55→        claim_id=fixture["claim_id"],
+    56→        policy_id=fixture["policy_id"],
+    57→        run_dir=run_dir,
+    58→        policies=policies,
+    59→        # TODO: Wire the fixture's scripted clarification responses into the
+    60→        # session so request_clarification can return them. The fixture stores them under
+    61→        # the "clarification_responses" key (a dict of question-substring -> reply).
+    62→        clarification_responses={},
+    63→    )
+    64→    executor = make_executor(session)
+    65→    budget = Budget(
+    66→        max_input_tokens=max_input_tokens,
+    67→        max_wall_clock_s=max_wall_clock_s,
+    68→    )
+    69→    trace_path = run_dir / "traces" / f"{fixture['claim_id']}.jsonl"
+    70→    t0 = time.monotonic()
+    71→    state: FinalState | None = None
+    72→    error: str | None = None
+    73→    with Tracer(trace_path) as tracer:
+    74→        try:
+    75→            state = run_loop(
+    76→                client=client,
+    77→                model=model,
+    78→                system=SYSTEM_PROMPT,
+    79→                tools=TOOL_SCHEMAS,
+    80→                messages=[{"role": "user", "content": fixture["initial_message"]}],
+    81→                tool_executor=executor,
+    82→                budget=budget,
+    83→                tracer=tracer,
+    84→            )
+    85→        except (BudgetExceeded, UnexpectedStopReason) as exc:
+    86→            error = f"{type(exc).__name__}: {exc}"
+    87→    if state is not None and not session.terminal_called:
+    88→        _escalate_without_terminal(executor, session)
+    89→    return FixtureResult(
+    90→        fixture=fixture,
+    91→        session=session,
+    92→        state=state,
+    93→        error=error,
+    94→        elapsed_s=time.monotonic() - t0,
+    95→        clarifications_asked=len(session.clarifications_asked),
+    96→    )
+    97→
+    98→
+    99→def _escalate_without_terminal(executor: Any, session: ClaimSession) -> None:
+   100→    """Deterministic backstop: the model ended its turn without routing or escalating.
+   101→
+   102→    The loop correctly stops on end_turn; whether a terminal tool was called is a
+   103→    separate question, answered here in code rather than left to the model. The
+   104→    claim is escalated through the same tool the model would have used, so it is
+   105→    written to escalations.jsonl like any other escalation.
+   106→    """
+   107→    executor(
+   108→        "escalate_to_human",
+   109→        {
+   110→            "reason": "model ended its turn without a terminal action (deterministic backstop)",
+   111→            "structured_summary": {
+   112→                "policy_id": session.policy_id,
+   113→                "root_cause": "no terminal tool called before end_turn",
+   114→                "candidate_claim_types": (
+   115→                    [session.classification["claim_type"]] if session.classification else []
+   116→                ),
+   117→                "case_facts": dict(session.case_facts),
+   118→                "recommended_action": "human review of the full transcript",
+   119→                "confidence": 0.0,
+   120→            },
+   121→        },
+   122→    )
+   123→
+   124→
+   125→def _summary_row(model: str, r: FixtureResult) -> dict[str, Any]:
+   126→    s = r.session
+   127→    state = r.state
+   128→    input_t = state.total_input_tokens if state else 0
+   129→    output_t = state.total_output_tokens if state else 0
+   130→    turns = state.turn_count if state else 0
+   131→    outcome = s.outcome if s.terminal_called else ("error" if r.error else "incomplete")
+   132→    claim_type: Any
+   133→    severity: Any
+   134→    if outcome == "routed" and s.routing is not None:
+   135→        claim_type = s.routing["claim_type"]
+   136→        severity = s.routing["severity"]
+   137→    elif outcome == "escalated" and s.escalation is not None:
+   138→        claim_type = ",".join(s.escalation.get("candidate_claim_types", []))
+   139→        severity = "-"
+   140→    else:
+   141→        claim_type = "-"
+   142→        severity = "-"
+   143→    return {
+   144→        "claim_id": s.claim_id,
+   145→        "outcome": outcome,
+   146→        "claim_type": claim_type,
+   147→        "severity": severity,
+   148→        "turns": turns,
+   149→        "clarifications_asked": r.clarifications_asked,
+   150→        "input_tokens": input_t,
+   151→        "output_tokens": output_t,
+   152→        "est_cost_usd": round(estimate_cost_usd(model, input_t, output_t), 4),
+   153→        "elapsed_s": round(r.elapsed_s, 1),
+   154→        "error": r.error or "",
+   155→    }
+   156→
+   157→
+   158→def _write_summary(
+   159→    run_dir: Path, model: str, rows: list[dict[str, Any]], total_cost: float
+   160→) -> Path:
+   161→    md_path = run_dir / "summary.md"
+   162→    headers = [
+   163→        "claim_id",
+   164→        "outcome",
+   165→        "claim_type",
+   166→        "severity",
+   167→        "turns",
+   168→        "clarifications_asked",
+   169→        "input_tokens",
+   170→        "output_tokens",
+   171→        "est_cost_usd",
+   172→        "elapsed_s",
+   173→    ]
+   174→    lines = [
+   175→        f"# Run summary — {run_dir.name}",
+   176→        "",
+   177→        f"- Model: `{model}`",
+   178→        f"- Fixtures processed: {len(rows)}",
+   179→        f"- Estimated total cost: **${total_cost:.4f}** USD",
+   180→        "",
+   181→        "| " + " | ".join(headers) + " |",
+   182→        "| " + " | ".join("---" for _ in headers) + " |",
+   183→    ]
+   184→    for r in rows:
+   185→        lines.append("| " + " | ".join(str(r[h]) for h in headers) + " |")
+   186→        if r["error"]:
+   187→            lines.append(f"  - error: `{r['error']}`")
+   188→    md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+   189→    return md_path
+   190→
+   191→
+   192→def _load_fixtures(arg_fixture: str | None) -> list[Path]:
+   193→    if arg_fixture is not None:
+   194→        path = FIXTURE_DIR / f"{arg_fixture}.json"
+   195→        if not path.exists():
+   196→            raise FileNotFoundError(f"fixture not found: {path}")
+   197→        return [path]
+   198→    return sorted(FIXTURE_DIR.glob("claim_*.json"))
+   199→
+   200→
+   201→def _make_run_dir() -> Path:
+   202→    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+   203→    run_dir = RUNS_ROOT / stamp
+   204→    run_dir.mkdir(parents=True, exist_ok=True)
+   205→    return run_dir
+   206→
+   207→
+   208→def main(argv: list[str] | None = None) -> int:
+   209→    parser = argparse.ArgumentParser(prog="claims_intake.run")
+   210→    grp = parser.add_mutually_exclusive_group(required=True)
+   211→    grp.add_argument("--all", action="store_true", help="Process every fixture in fixtures/claims/")
+   212→    grp.add_argument(
+   213→        "--fixture",
+   214→        type=str,
+   215→        metavar="NAME",
+   216→        help="Process one fixture, e.g. --fixture claim_03_water_damage",
+   217→    )
+   218→    parser.add_argument("--model", default=default_model())
+   219→    parser.add_argument("--max-input-tokens", type=int, default=500_000)
+   220→    parser.add_argument("--max-wall-clock-s", type=float, default=180.0)
+   221→    args = parser.parse_args(argv)
+   222→
+   223→    client = make_client()
+   224→    policies = json.loads(POLICIES_PATH.read_text())
+   225→    fixtures_to_run = _load_fixtures(args.fixture)
+   226→    run_dir = _make_run_dir()
+   227→    print(f"run_dir: {run_dir}", file=sys.stderr)
+   228→
+   229→    rows: list[dict[str, Any]] = []
+   230→    total_input = 0
+   231→    total_output = 0
+   232→    any_failure = False
+   233→
+   234→    for fx_path in fixtures_to_run:
+   235→        fixture = json.loads(fx_path.read_text())
+   236→        print(
+   237→            f"[{fixture['claim_id']}] policy={fixture['policy_id']} expected={fixture['expected_outcome']}",
+   238→            file=sys.stderr,
+   239→        )
+   240→        result = _run_one(
+   241→            client=client,
+   242→            model=args.model,
+   243→            fixture=fixture,
+   244→            policies=policies,
+   245→            run_dir=run_dir,
+   246→            max_input_tokens=args.max_input_tokens,
+   247→            max_wall_clock_s=args.max_wall_clock_s,
+   248→        )
+   249→        row = _summary_row(args.model, result)
+   250→        rows.append(row)
+   251→        if result.state is not None:
+   252→            total_input += result.state.total_input_tokens
+   253→            total_output += result.state.total_output_tokens
+   254→        if not result.session.terminal_called:
+   255→            any_failure = True
+   256→        print(
+   257→            f"  → outcome={row['outcome']} turns={row['turns']} clarifications={row['clarifications_asked']} "
+   258→            f"tokens={row['input_tokens']}/{row['output_tokens']} est=${row['est_cost_usd']:.4f}",
+   259→            file=sys.stderr,
+   260→        )
+   261→
+   262→    total_cost = estimate_cost_usd(args.model, total_input, total_output)
+   263→    summary_path = _write_summary(run_dir, args.model, rows, total_cost)
+   264→    print(f"summary: {summary_path}", file=sys.stderr)
+   265→    print(f"total estimated cost: ${total_cost:.4f}", file=sys.stderr)
+   266→    return 1 if any_failure else 0
+   267→
+   268→
+   269→if __name__ == "__main__":
+   270→    raise SystemExit(main())
+   271→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

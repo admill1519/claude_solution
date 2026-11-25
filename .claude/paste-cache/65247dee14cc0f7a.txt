@@ -1,0 +1,45 @@
+Use this project rubric to understand and assess the project criteria.
+
+Building the Projects
+Criteria    Submission Requirements
+Operate a stop_reason-driven agentic loop with integrated tools
+
+Test output shows the agentic-loop system's suite passing (30 tests).
+A run artifact shows claims processed end-to-end, each terminating in either a routing decision or an escalation.
+At least one submitted trace shows turn-by-turn stop_reason values, with the loop continuing on tool_use and terminating on end_turn.
+The reflection brief identifies, by file and function, where loop termination is decided, and names one anti-pattern the loop avoids.
+Implement Layer 3 orchestration with tiered state, crash recovery, and session forking
+
+Test output shows the orchestration system's suite passing (33 tests).
+A run artifact shows a shift processed using a SQL-filtered slice of defects rather than the full history.
+Submitted evidence shows the hot-state file remaining within its size budget (under ~5 KB) after a run.
+The reflection brief explains the resume-vs-fresh recovery decision and the staleness threshold that drives it, and explains how a forked investigation stays isolated from the main state.
+Engineer a context strategy that reduces token load while preserving answerability
+
+Test output shows the context-strategy system's suite passing (30 tests).
+A budget.json artifact shows the assembled context is at least 50% smaller than the raw baseline.
+Evaluation results show the assembled context answers at least 5 of 6 evaluation questions.
+The control-variant results (with the Case Facts block removed) show at least one question regressing relative to the full run.
+The reflection brief explains which information was summarized, which was preserved verbatim, and why, citing the learner's own token numbers.
+Criteria: Configure a Claude Code harness with hierarchy, path-scoped rules, commands, and skills
+
+The configuration validator runs and reports a passing result (OK, exit code 0).
+Test output shows the configuration system's suite passing (35 tests).
+Submitted evidence shows a CLAUDE.md that imports modular standards with @pathreferences (for example@.claude(opens in a new tab)/standards/api.md).
+Submitted evidence shows path-scoped rule files whose YAML frontmatter declares glob patterns, a project-scoped slash command, and a skill configured with context: fork and a read-only allowed-tools set.
+The reflection brief explains why a path-scoped rule is preferred over a directory-level CLAUDE.md for conventions that span the codebase, and why the skill runs in a forked context.
+Verification
+Criteria    Submission Requirements
+Verify each project against its automated test suite
+
+Passing pytest output is submitted for all four systems (30 + 30 + 35 + 33 tests).
+Each test log is identifiable to its system (file path or header visible).
+The reflection brief names one behavior that a test suite guarantees which manual inspection of a single run would not reveal.
+Reflection & Synthesis
+Criteria    Submission Requirements
+Defend architectural trade-offs in an evidence-grounded reflection brief
+
+Every reflection answer cites at least one concrete artifact from the learner's own runs (a run ID, file path, token count, test count, or claim outcome).
+The cross-project synthesis locates each of the three layers (Model, Harness, Orchestration) in a named file from at least one of the four systems.
+The brief contrasts deterministic enforcement with prompt-based guidance, citing one example of each from the projects built.
+The brief compares how context management appears in the context-strategy system versus the orchestration system, with cited numbers from both.

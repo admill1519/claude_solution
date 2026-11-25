@@ -1,0 +1,86 @@
+---
+name: deploy-check
+description: Pre-deployment validation and readiness checks (runs in an isolated fork)
+context: fork
+allowed-tools:
+  - Glob
+  - Grep
+  - Read
+  - Bash
+---
+
+# /deploy-check: Pre-deployment validation skill
+
+Runs read-only pre-deployment checks in an isolated fork context. Keeps verbose discovery output out of the main session and returns a concise pass/fail summary.
+
+**Usage:** `/deploy-check` (no arguments)
+
+## Rationale
+
+Deployment checklists are verbose: they scan for potential issues, generate evidence, and produce diagnostic logs. Running these checks in the main session clutters the conversation with intermediate findings. By using `context: fork`, the skill runs in an isolated branch, isolates verbose output, and reports only the final verdict back to the main session.
+
+This design mirrors the **Branching Reality pattern** (from Claude Code's fork/session architecture): the main session remains clean while the skill explores and discovers in a parallel context, returning only actionable results.
+
+## Three pre-deployment checks
+
+### 1. Database migrations are forward-only
+
+**Detection:**
+- Scan `src/db/migrations/` for all `.sql` files.
+- Check that migration filenames follow `NNNN__description.sql` format.
+- Verify no migration contains `DROP TABLE`, `DROP COLUMN`, or `TRUNCATE` without a corresponding "rollback" migration (convention: reverse of original migration).
+
+**Pass criterion:**
+- All migrations follow naming convention.
+- No destructive operations without documented forward-migration rollback.
+
+**Fail criterion:**
+- Migration file doesn't follow naming convention.
+- Destructive operation found without a corresponding forward migration.
+
+### 2. Environment variables are documented
+
+**Detection:**
+- Check `.env.example` or `docs/environment-variables.md` for a list of required env vars.
+- Scan `src/` for `process.env.*` usage.
+- Compare: every env var accessed in code must be listed in the docs.
+
+**Pass criterion:**
+- Every env var accessed appears in `.env.example` with a comment explaining its purpose.
+- No undocumented env var is used in production code.
+
+**Fail criterion:**
+- Code accesses an env var not in `.env.example`.
+
+### 3. API schemas and responses are in sync
+
+**Detection:**
+- For each handler in `src/api/`, find its response schema in `src/api/_schemas/responses/`.
+- Compare the schema definition against the response returned in the handler (parse AST or grep for `return { ... }`).
+
+**Pass criterion:**
+- Every handler has a corresponding schema file.
+- Response body structure matches the schema (at least for top-level keys).
+
+**Fail criterion:**
+- A handler returns a field not in its schema.
+- A required field in the schema is conditionally included in the response.
+
+## Personal customization note
+
+This skill runs by default in fork context. For team customization, copy this skill to `~/.claude/skills/deploy-check/` and edit to match your project's specific deployment checks. User-level skills take precedence over project-level skills.
+
+## Skill vs. CLAUDE.md decision rubric
+
+**Use a skill (like deploy-check) when:**
+- The task is **on-demand** (user runs `/deploy-check` before deploying, not automatically on every edit).
+- The task **produces verbose output** that you want isolated from the main session (logs, intermediate findings).
+- The task is **forked context-aware** (you want to avoid side effects in the main session).
+- The task is **personal-customizable** (each team member may tweak deployment checks).
+
+**Use CLAUDE.md or path-scoped rules when:**
+- The convention **always applies** (e.g., React components always follow the same import rules).
+- The guidance is **compact and reference-able** (e.g., "use `@/` alias paths").
+- The guidance **influences how you code** in real-time (e.g., as you're editing a file).
+
+The `/deploy-check` skill is on-demand + fork-isolated + verbose, so it lives as a skill, not in CLAUDE.md.

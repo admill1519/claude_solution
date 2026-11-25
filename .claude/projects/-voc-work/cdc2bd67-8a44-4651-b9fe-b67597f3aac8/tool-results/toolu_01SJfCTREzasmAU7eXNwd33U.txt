@@ -1,0 +1,39 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/tests/test_antipatterns.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+    88→
+    89→# ---------------------------------------------------------------------------
+    90→# Positive evidence — stop_reason is the value that breaks the while loop
+    91→# ---------------------------------------------------------------------------
+    92→def test_stop_reason_is_loop_control() -> None:
+    93→    """loop.py references `stop_reason` AND a `while` loop exits via return/raise on it."""
+    94→    tree = _parse(LOOP_PY)
+    95→
+    96→    # Check for at least one reference to `stop_reason`
+    97→    has_stop_reason_ref = False
+    98→    for node in ast.walk(tree):
+    99→        if isinstance(node, ast.Attribute) and node.attr == "stop_reason":
+   100→            has_stop_reason_ref = True
+   101→            break
+   102→        elif isinstance(node, ast.Name) and node.id == "stop_reason":
+   103→            has_stop_reason_ref = True
+   104→            break
+   105→
+   106→    assert has_stop_reason_ref, "loop.py must reference 'stop_reason'"
+   107→
+   108→    # Check that at least one while loop exits via return/raise on stop_reason
+   109→    found_proper_exit = False
+   110→    for node in ast.walk(tree):
+   111→        if isinstance(node, ast.While):
+   112→            body_code = ast.unparse(node.body)
+   113→            has_stop_reason = "stop_reason" in body_code
+   114→            has_exit = "return" in body_code or "raise" in body_code
+   115→            if has_stop_reason and has_exit:
+   116→                found_proper_exit = True
+   117→                break
+   118→
+   119→    assert found_proper_exit, (
+   120→        "loop.py must have a while loop whose body exits (return/raise) based on stop_reason"
+   121→    )
+   122→
+   123→
+   124→# ---------------------------------------------------------------------------
+   125→# Decision-tree-in-Python — no `if claim_type == "..."` branches in the package

@@ -1,0 +1,36 @@
+     1→"""The runner guarantees every claim ends routed or escalated, even if the model doesn't."""
+     2→
+     3→import json
+     4→from pathlib import Path
+     5→
+     6→from claims_intake.run import _run_one
+     7→from tests.fakes import FakeBlock, FakeClient, FakeMessages, FakeResponse, FakeUsage
+     8→
+     9→
+    10→def test_claim_without_terminal_tool_is_escalated(tmp_path: Path) -> None:
+    11→    """end_turn with no route/escalate call still produces an escalation record."""
+    12→    scripted = [
+    13→        FakeResponse(
+    14→            content=[FakeBlock(type="text", text="Thanks, I have everything I need.")],
+    15→            stop_reason="end_turn",
+    16→            usage=FakeUsage(input_tokens=10, output_tokens=5),
+    17→        ),
+    18→    ]
+    19→    result = _run_one(
+    20→        client=FakeClient(messages=FakeMessages(scripted=scripted)),
+    21→        model="fake-model",
+    22→        fixture={"claim_id": "CLM-T", "policy_id": "POL-T", "initial_message": "hi"},
+    23→        policies={},
+    24→        run_dir=tmp_path,
+    25→        max_input_tokens=1_000_000,
+    26→        max_wall_clock_s=60.0,
+    27→    )
+    28→
+    29→    assert result.session.outcome == "escalated"
+    30→    lines = (tmp_path / "escalations.jsonl").read_text(encoding="utf-8").splitlines()
+    31→    assert json.loads(lines[0])["claim_id"] == "CLM-T"
+    32→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

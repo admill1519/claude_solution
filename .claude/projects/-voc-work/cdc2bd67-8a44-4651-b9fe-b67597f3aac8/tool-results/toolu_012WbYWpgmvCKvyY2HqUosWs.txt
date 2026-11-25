@@ -1,0 +1,102 @@
+     1→"""Anti-pattern audit.
+     2→
+     3→Verifies, by static AST analysis, that the agentic loop does NOT:
+     4→- use string-membership tests against text content to drive control flow
+     5→- use an integer-literal iteration cap as its primary stopping mechanism
+     6→- omit reference to `stop_reason` as the loop-breaking signal
+     7→
+     8→And that the package broadly does not branch on `claim_type` equality
+     9→outside of the tool-schema definitions and the cost-estimate module.
+    10→
+    11→Each test parses the relevant file with `ast` and walks the tree. There are
+    12→no runtime imports of claims_intake here — the audit is static, so it works
+    13→even if loop.py / tools.py do not run end-to-end.
+    14→"""
+    15→
+    16→from __future__ import annotations
+    17→
+    18→import ast
+    19→from pathlib import Path
+    20→
+    21→PKG = Path(__file__).resolve().parents[1] / "claims_intake"
+    22→LOOP_PY = PKG / "loop.py"
+    23→
+    24→
+    25→def _parse(path: Path) -> ast.Module:
+    26→    return ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+    27→
+    28→
+    29→# ---------------------------------------------------------------------------
+    30→# Anti-pattern 1 — no string-membership tests against assistant text in the loop
+    31→# ---------------------------------------------------------------------------
+    32→def test_no_string_membership_against_text_in_loop() -> None:
+    33→    """No `"some_token" in <something>` expressions in loop.py.
+    34→
+    35→    Heuristic: any `ast.Compare` node using `ast.In` whose `left` operand is a
+    36→    string `ast.Constant` is flagged. The loop has no legitimate reason to test
+    37→    for the presence of a magic string inside the model's output — that would be
+    38→    natural-language-driven control flow.
+    39→    """
+    40→    # TODO: Parse LOOP_PY into an AST. Walk every node. For each
+    41→    # ast.Compare, look at its `ops` — if any op is ast.In AND `node.left` is an
+    42→    # ast.Constant holding a `str`, append `ast.unparse(node)` to an offenders list.
+    43→    # Assert the offenders list is empty; include the offending expressions in the
+    44→    # failure message so a reader can find the bad line.
+    45→    raise NotImplementedError("Exercise 2: write this AST audit")
+    46→
+    47→
+    48→# ---------------------------------------------------------------------------
+    49→# Anti-pattern 2 — no integer-literal iteration cap as the primary stop mechanism
+    50→# ---------------------------------------------------------------------------
+    51→def test_no_integer_literal_iteration_cap_in_loop() -> None:
+    52→    """No `for _ in range(<int literal>)` and no `while <var> < <int literal>` in loop.py.
+    53→
+    54→    Token/wall-clock/config-sourced budgets are explicitly allowed because they
+    55→    read their cap from a `Budget` instance (an attribute access or a function
+    56→    arg), not from a literal. If you need a cap, pass it in.
+    57→    """
+    58→    # TODO: Walk LOOP_PY's AST. Flag:
+    59→    #   - any ast.For whose iter is `range(<int literal>, ...)`
+    60→    #     (ast.Call to a Name "range" with at least one Constant int arg)
+    61→    #   - any ast.While whose test is an ast.Compare with an int Constant on the right
+    62→    # Assert the offenders list is empty. Mention "use a Budget instead" in the failure
+    63→    # message so the reader sees the recommended fix.
+    64→    raise NotImplementedError("Exercise 2: write this AST audit")
+    65→
+    66→
+    67→# ---------------------------------------------------------------------------
+    68→# Positive evidence — stop_reason is the value that breaks the while loop
+    69→# ---------------------------------------------------------------------------
+    70→def test_stop_reason_is_loop_control() -> None:
+    71→    """loop.py references `stop_reason` AND a `while` loop exits via return/raise on it."""
+    72→    # TODO: Parse LOOP_PY. Walk the tree:
+    73→    #   1. Assert there is at least one reference to `stop_reason` (either as an
+    74→    #      ast.Attribute named `stop_reason` or an ast.Name named `stop_reason`).
+    75→    #   2. Find every ast.While node. For at least one of them, the unparsed body
+    76→    #      must mention BOTH "stop_reason" AND ("return" OR "raise"). That is what
+    77→    #      "the loop exits on stop_reason" looks like at the AST level.
+    78→    # Fail with a clear message if either condition is missing.
+    79→    raise NotImplementedError("Exercise 2: write this AST audit")
+    80→
+    81→
+    82→# ---------------------------------------------------------------------------
+    83→# Decision-tree-in-Python — no `if claim_type == "..."` branches in the package
+    84→# ---------------------------------------------------------------------------
+    85→def test_no_claim_type_equality_branching_in_package() -> None:
+    86→    """Decision logic about claim type lives in the model, not in Python.
+    87→
+    88→    tools.py is exempt (it defines the enum in input_schema).
+    89→    pricing.py is exempt (it may map claim_type to per-queue cost weights).
+    90→    """
+    91→    # TODO: Walk every .py file under PKG (recursively). Skip tools.py,
+    92→    # pricing.py, and __init__.py. For each file, parse the AST, find every ast.Compare
+    93→    # whose operators include ast.Eq and whose left operand is a Name/Attribute named
+    94→    # "claim_type" compared against a string Constant. Collect "filename:lineno: <expr>"
+    95→    # for each match. Assert the list is empty; recommend in the failure message that
+    96→    # you move the decision into the model via tool calls.
+    97→    raise NotImplementedError("Exercise 2: write this AST audit")
+    98→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

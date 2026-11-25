@@ -1,0 +1,31 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/claims_intake/tools.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+   242→        "rationale": rationale,
+   243→    })
+   244→
+   245→
+   246→def _t_request_clarification(session: ClaimSession, inp: dict[str, Any]) -> str:
+   247→    question = inp.get("question")
+   248→    ambiguity_between = inp.get("ambiguity_between")
+   249→
+   250→    if not isinstance(question, str):
+   251→        return _err("permanent", False, "question must be a string")
+   252→    if not isinstance(ambiguity_between, list) or len(ambiguity_between) < 2:
+   253→        return _err("permanent", False, "ambiguity_between must be a list of at least 2 entries")
+   254→
+   255→    # Record the clarification asked
+   256→    session.clarifications_asked.append({
+   257→        "question": question,
+   258→        "ambiguity_between": ambiguity_between,
+   259→    })
+   260→
+   261→    # Try to find a matching response
+   262→    question_lower = question.lower()
+   263→    for key, response in session.clarification_responses.items():
+   264→        if key.lower() in question_lower:
+   265→            return _ok({"claimant_reply": response})
+   266→
+   267→    return _ok({"claimant_reply": "NO_RESPONSE"})
+   268→
+   269→
+   270→def _t_route_to_adjuster(session: ClaimSession, inp: dict[str, Any]) -> str:
+   271→    # TODO: Implement the routing terminal tool.

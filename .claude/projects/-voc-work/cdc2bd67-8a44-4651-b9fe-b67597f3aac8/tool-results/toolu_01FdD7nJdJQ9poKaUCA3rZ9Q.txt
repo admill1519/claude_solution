@@ -1,0 +1,12 @@
+Exit code 4
+ERROR: file or directory not found: tests/test_loop.py
+
+
+============================= test session starts ==============================
+platform linux -- Python 3.10.14, pytest-9.2.0, pluggy-1.7.0 -- /usr/bin/python
+cachedir: .pytest_cache
+rootdir: /voc/work
+plugins: anyio-4.10.0, langsmith-0.4.27, typeguard-4.3.0, Faker-25.2.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.14s =============================

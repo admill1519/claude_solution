@@ -1,0 +1,193 @@
+     1→from typing import Any
+     2→
+     3→import pytest
+     4→
+     5→from claims_intake.budget import Budget, BudgetExceeded
+     6→from claims_intake.loop import UnexpectedStopReason, run
+     7→from claims_intake.tracer import NullTracer
+     8→from tests.fakes import FakeBlock, FakeClient, FakeMessages, FakeResponse, FakeUsage
+     9→
+    10→
+    11→def _budget() -> Budget:
+    12→    return Budget(max_input_tokens=1_000_000, max_wall_clock_s=60.0)
+    13→
+    14→
+    15→def _noop_executor(name: str, inp: dict[str, Any]) -> str:
+    16→    return '{"ok": true}'
+    17→
+    18→
+    19→def test_loop_terminates_on_end_turn() -> None:
+    20→    """A response with stop_reason=='end_turn' returns immediately."""
+    21→    scripted = [
+    22→        FakeResponse(
+    23→            content=[FakeBlock(type="text", text="done")],
+    24→            stop_reason="end_turn",
+    25→            usage=FakeUsage(input_tokens=10, output_tokens=5),
+    26→        ),
+    27→    ]
+    28→    client = FakeClient(messages=FakeMessages(scripted=scripted))
+    29→    tracer = NullTracer()
+    30→
+    31→    state = run(
+    32→        client=client,
+    33→        model="fake-model",
+    34→        system="sys",
+    35→        tools=[],
+    36→        messages=[{"role": "user", "content": "hi"}],
+    37→        tool_executor=_noop_executor,
+    38→        budget=_budget(),
+    39→        tracer=tracer,
+    40→    )
+    41→
+    42→    assert state.turn_count == 1
+    43→    assert state.total_input_tokens == 10
+    44→    assert state.total_output_tokens == 5
+    45→    assert tracer.events[0]["stop_reason"] == "end_turn"
+    46→
+    47→
+    48→def test_loop_continues_on_tool_use() -> None:
+    49→    """A response with stop_reason=='tool_use' triggers executor and another turn."""
+    50→    scripted = [
+    51→        FakeResponse(
+    52→            content=[
+    53→                FakeBlock(type="tool_use", id="tu_1", name="lookup_policy", input={"policy_id": "P1"}),
+    54→            ],
+    55→            stop_reason="tool_use",
+    56→            usage=FakeUsage(input_tokens=20, output_tokens=10),
+    57→        ),
+    58→        FakeResponse(
+    59→            content=[FakeBlock(type="text", text="all done")],
+    60→            stop_reason="end_turn",
+    61→            usage=FakeUsage(input_tokens=30, output_tokens=5),
+    62→        ),
+    63→    ]
+    64→    client = FakeClient(messages=FakeMessages(scripted=scripted))
+    65→    tracer = NullTracer()
+    66→    executed: list[tuple[str, dict[str, Any]]] = []
+    67→
+    68→    def executor(name: str, inp: dict[str, Any]) -> str:
+    69→        executed.append((name, inp))
+    70→        return '{"coverage": "full"}'
+    71→
+    72→    state = run(
+    73→        client=client,
+    74→        model="fake-model",
+    75→        system="sys",
+    76→        tools=[],
+    77→        messages=[{"role": "user", "content": "claim"}],
+    78→        tool_executor=executor,
+    79→        budget=_budget(),
+    80→        tracer=tracer,
+    81→    )
+    82→
+    83→    assert state.turn_count == 2
+    84→    assert state.total_input_tokens == 50
+    85→    assert executed == [("lookup_policy", {"policy_id": "P1"})]
+    86→    assert [e["stop_reason"] for e in tracer.events] == ["tool_use", "end_turn"]
+    87→    assert tracer.events[0]["tool_calls"][0]["name"] == "lookup_policy"
+    88→
+    89→
+    90→def test_loop_handles_multiple_tool_use_blocks_in_one_turn() -> None:
+    91→    """All tool_use blocks in a single assistant turn execute and return in ONE user turn."""
+    92→    scripted = [
+    93→        FakeResponse(
+    94→            content=[
+    95→                FakeBlock(type="tool_use", id="tu_1", name="lookup_policy", input={"policy_id": "P1"}),
+    96→                FakeBlock(type="tool_use", id="tu_2", name="record_claim_fact", input={"field": "x", "value": "y"}),
+    97→            ],
+    98→            stop_reason="tool_use",
+    99→            usage=FakeUsage(input_tokens=20, output_tokens=10),
+   100→        ),
+   101→        FakeResponse(
+   102→            content=[FakeBlock(type="text", text="ok")],
+   103→            stop_reason="end_turn",
+   104→            usage=FakeUsage(input_tokens=15, output_tokens=5),
+   105→        ),
+   106→    ]
+   107→    client = FakeClient(messages=FakeMessages(scripted=scripted))
+   108→
+   109→    run(
+   110→        client=client,
+   111→        model="fake-model",
+   112→        system="sys",
+   113→        tools=[],
+   114→        messages=[{"role": "user", "content": "x"}],
+   115→        tool_executor=_noop_executor,
+   116→        budget=_budget(),
+   117→        tracer=NullTracer(),
+   118→    )
+   119→
+   120→    # The second create() call should have received the assistant turn plus ONE user turn
+   121→    # containing two tool_result blocks (not two separate user turns).
+   122→    second_call_messages = client.messages.calls[1]["messages"]
+   123→    # original user + assistant + new user (with tool_results)
+   124→    assert len(second_call_messages) == 3
+   125→    last_user = second_call_messages[-1]
+   126→    assert last_user["role"] == "user"
+   127→    tool_results = last_user["content"]
+   128→    assert len(tool_results) == 2
+   129→    assert {tr["tool_use_id"] for tr in tool_results} == {"tu_1", "tu_2"}
+   130→
+   131→
+   132→def test_loop_raises_on_unexpected_stop_reason() -> None:
+   133→    """Any stop_reason other than tool_use / end_turn raises — no silent retry."""
+   134→    scripted = [
+   135→        FakeResponse(
+   136→            content=[],
+   137→            stop_reason="max_tokens",
+   138→            usage=FakeUsage(input_tokens=10, output_tokens=4096),
+   139→        ),
+   140→    ]
+   141→    client = FakeClient(messages=FakeMessages(scripted=scripted))
+   142→
+   143→    with pytest.raises(UnexpectedStopReason):
+   144→        run(
+   145→            client=client,
+   146→            model="fake-model",
+   147→            system="sys",
+   148→            tools=[],
+   149→            messages=[{"role": "user", "content": "x"}],
+   150→            tool_executor=_noop_executor,
+   151→            budget=_budget(),
+   152→            tracer=NullTracer(),
+   153→        )
+   154→
+   155→
+   156→def test_budget_raises_when_token_cap_exceeded() -> None:
+   157→    """Budget enforcement is the safety net, and it raises rather than truncating."""
+   158→    scripted = [
+   159→        FakeResponse(
+   160→            content=[FakeBlock(type="tool_use", id="tu_1", name="x", input={})],
+   161→            stop_reason="tool_use",
+   162→            usage=FakeUsage(input_tokens=500, output_tokens=10),
+   163→        ),
+   164→        FakeResponse(
+   165→            content=[FakeBlock(type="tool_use", id="tu_2", name="x", input={})],
+   166→            stop_reason="tool_use",
+   167→            usage=FakeUsage(input_tokens=600, output_tokens=10),
+   168→        ),
+   169→        FakeResponse(
+   170→            content=[FakeBlock(type="text", text="done")],
+   171→            stop_reason="end_turn",
+   172→            usage=FakeUsage(input_tokens=10, output_tokens=5),
+   173→        ),
+   174→    ]
+   175→    client = FakeClient(messages=FakeMessages(scripted=scripted))
+   176→    tight_budget = Budget(max_input_tokens=1000, max_wall_clock_s=60.0)
+   177→
+   178→    with pytest.raises(BudgetExceeded):
+   179→        run(
+   180→            client=client,
+   181→            model="fake-model",
+   182→            system="sys",
+   183→            tools=[],
+   184→            messages=[{"role": "user", "content": "x"}],
+   185→            tool_executor=_noop_executor,
+   186→            budget=tight_budget,
+   187→            tracer=NullTracer(),
+   188→        )
+   189→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

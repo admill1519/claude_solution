@@ -1,0 +1,154 @@
+     1→"""Tool schemas and dispatcher.
+     2→
+     3→Seven tools, registered with Anthropic tool-use shape. The dispatcher returns
+     4→serialized JSON strings to be wrapped as `tool_result` content. Errors follow
+     5→the "Graceful Tool Failure" shape:
+     6→
+     7→    {"is_error": true,
+     8→     "error_category": "transient"|"permanent",
+     9→     "is_retryable": bool,
+    10→     "message": "..."}
+    11→
+    12→Errors are never raised to the loop.
+    13→"""
+    14→
+    15→from __future__ import annotations
+    16→
+    17→import json
+    18→from pathlib import Path
+    19→from typing import Any
+    20→
+    21→from claims_intake.session import ClaimSession
+    22→
+    23→CLAIM_TYPES = ["property_damage", "theft", "liability", "auto"]
+    24→SEVERITIES = ["low", "medium", "high"]
+    25→
+    26→# ----------------------------------------------------------------------------
+    27→# Schemas — passed verbatim to the Anthropic Messages API as the `tools` arg.
+    28→# ----------------------------------------------------------------------------
+    29→
+    30→TOOL_SCHEMAS: list[dict[str, Any]] = [
+    31→    {
+    32→        "name": "lookup_policy",
+    33→        "description": (
+    34→            "Look up a policyholder's coverage record. Use this early in the "
+    35→            "conversation to confirm the policy exists, what is covered, and the "
+    36→            "deductible. Returns coverage, deductible, status, and policy_holder."
+    37→        ),
+    38→        "input_schema": {
+    39→            "type": "object",
+    40→            "properties": {
+    41→                "policy_id": {"type": "string", "description": "Policy identifier, e.g. POL-1001"}
+    42→            },
+    43→            "required": ["policy_id"],
+    44→        },
+    45→    },
+    46→    {
+    47→        "name": "record_claim_fact",
+    48→        "description": (
+    49→            "Record one normalized fact extracted from the claimant's statements "
+    50→            "(e.g., incident_date, location, description, items_lost, injury_party). "
+    51→            "Call once per fact. Facts accumulate into the case file used by routing."
+    52→        ),
+    53→        "input_schema": {
+    54→            "type": "object",
+    55→            "properties": {
+    56→                "field": {
+    57→                    "type": "string",
+    58→                    "description": "Snake_case field name, e.g. incident_date or location",
+    59→                },
+    60→                "value": {"type": "string", "description": "The fact as a short string"},
+    61→            },
+    62→            "required": ["field", "value"],
+    63→        },
+    64→    },
+    65→    {
+    66→        "name": "classify_claim",
+    67→        "description": (
+    68→            "Commit to a claim type with a confidence score and rationale. Call "
+    69→            "this exactly once per claim, after enough facts and clarifications "
+    70→            "have been gathered. If confidence is below 0.6, prefer escalate_to_human."
+    71→        ),
+    72→        "input_schema": {
+    73→            "type": "object",
+    74→            "properties": {
+    75→                "claim_type": {"type": "string", "enum": CLAIM_TYPES},
+    76→                "confidence": {
+    77→                    "type": "number",
+    78→                    "minimum": 0.0,
+    79→                    "maximum": 1.0,
+    80→                    "description": "0.0 = no idea; 1.0 = certain",
+    81→                },
+    82→                "rationale": {
+    83→                    "type": "string",
+    84→                    "description": "One sentence explaining why this type fits the facts",
+    85→                },
+    86→            },
+    87→            "required": ["claim_type", "confidence", "rationale"],
+    88→        },
+    89→    },
+    90→    {
+    91→        "name": "assess_severity",
+    92→        "description": (
+    93→            "Commit to a severity bucket with a rationale. Call this exactly once "
+    94→            "per claim, after classification. Severity reflects damage magnitude, "
+    95→            "injury severity, and policy coverage limits."
+    96→        ),
+    97→        "input_schema": {
+    98→            "type": "object",
+    99→            "properties": {
+   100→                "severity": {"type": "string", "enum": SEVERITIES},
+   101→                "rationale": {"type": "string"},
+   102→            },
+   103→            "required": ["severity", "rationale"],
+   104→        },
+   105→    },
+   106→    # TODO: Add three more tool schemas to this list.
+   107→    #
+   108→    #   - request_clarification(question: str, ambiguity_between: list of >=2 CLAIM_TYPES)
+   109→    #     Ask the claimant ONE clarifying question. Returns the scripted claimant reply,
+   110→    #     or the literal string "NO_RESPONSE" if nothing matches.
+   111→    #
+   112→    #   - route_to_adjuster(queue: enum CLAIM_TYPES, claim_summary: str)
+   113→    #     TERMINAL TOOL. The agent picks this when classification confidence is >= 0.6
+   114→    #     and severity has been assessed.
+   115→    #
+   116→    #   - escalate_to_human(reason: str, structured_summary: dict)
+   117→    #     TERMINAL TOOL. The agent picks this when the claim cannot be routed safely.
+   118→    #     structured_summary requires: policy_id, root_cause, candidate_claim_types,
+   119→    #     case_facts, recommended_action, confidence.
+   120→]
+   121→
+   122→# ----------------------------------------------------------------------------
+   123→# Errors — Graceful Tool Failure shape
+   124→# ----------------------------------------------------------------------------
+   125→
+   126→
+   127→def _err(category: str, retryable: bool, message: str) -> str:
+   128→    return json.dumps(
+   129→        {
+   130→            "is_error": True,
+   131→            "error_category": category,
+   132→            "is_retryable": retryable,
+   133→            "message": message,
+   134→        }
+   135→    )
+   136→
+   137→
+   138→def _ok(payload: dict[str, Any]) -> str:
+   139→    return json.dumps(payload)
+   140→
+   141→
+   142→# ----------------------------------------------------------------------------
+   143→# Tool implementations
+   144→# ----------------------------------------------------------------------------
+   145→
+   146→
+   147→def _t_lookup_policy(session: ClaimSession, inp: dict[str, Any]) -> str:
+   148→    pid = inp.get("policy_id")
+   149→    if not isinstance(pid, str):
+   150→        return _err("permanent", False, "policy_id must be a string")
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

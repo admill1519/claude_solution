@@ -1,0 +1,52 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/claims_intake/tools.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+   306→
+   307→    return _ok({"routed": True, "queue": queue})
+   308→
+   309→
+   310→def _t_escalate_to_human(session: ClaimSession, inp: dict[str, Any]) -> str:
+   311→    # Guard against double-terminal
+   312→    if session.terminal_called:
+   313→        return _err("permanent", False, "Terminal action already called (routing or escalation)")
+   314→
+   315→    reason = inp.get("reason")
+   316→    structured_summary = inp.get("structured_summary")
+   317→
+   318→    # Validate reason
+   319→    if not isinstance(reason, str):
+   320→        return _err("permanent", False, "reason must be a string")
+   321→
+   322→    # Validate structured_summary and check for required fields
+   323→    if not isinstance(structured_summary, dict):
+   324→        return _err("permanent", False, "structured_summary must be a dict")
+   325→
+   326→    required_fields = {
+   327→        "policy_id",
+   328→        "root_cause",
+   329→        "candidate_claim_types",
+   330→        "case_facts",
+   331→        "recommended_action",
+   332→        "confidence",
+   333→    }
+   334→    missing = required_fields - set(structured_summary.keys())
+   335→    if missing:
+   336→        return _err("permanent", False, f"structured_summary missing fields: {', '.join(sorted(missing))}")
+   337→
+   338→    # Build the escalation record
+   339→    record = {
+   340→        "claim_id": session.claim_id,
+   341→        "policy_id": session.policy_id,
+   342→        "reason": reason,
+   343→        **structured_summary,
+   344→        "case_facts_at_escalation": session.case_facts,
+   345→    }
+   346→    session.escalation = record
+   347→
+   348→    # Append to escalations file
+   349→    esc_file = session.run_dir / "escalations.jsonl"
+   350→    _append_jsonl(esc_file, record)
+   351→
+   352→    return _ok({"escalated": True})
+   353→
+   354→
+   355→# ----------------------------------------------------------------------------
+   356→# Dispatcher

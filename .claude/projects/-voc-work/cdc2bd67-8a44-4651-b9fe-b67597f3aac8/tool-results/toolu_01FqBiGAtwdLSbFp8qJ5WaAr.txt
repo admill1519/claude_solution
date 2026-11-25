@@ -1,0 +1,187 @@
+     1→"""Tool schemas and dispatcher.
+     2→
+     3→Seven tools, registered with Anthropic tool-use shape. The dispatcher returns
+     4→serialized JSON strings to be wrapped as `tool_result` content. Errors follow
+     5→the "Graceful Tool Failure" shape:
+     6→
+     7→    {"is_error": true,
+     8→     "error_category": "transient"|"permanent",
+     9→     "is_retryable": bool,
+    10→     "message": "..."}
+    11→
+    12→Errors are never raised to the loop.
+    13→"""
+    14→
+    15→from __future__ import annotations
+    16→
+    17→import json
+    18→from pathlib import Path
+    19→from typing import Any
+    20→
+    21→from claims_intake.session import ClaimSession
+    22→
+    23→CLAIM_TYPES = ["property_damage", "theft", "liability", "auto"]
+    24→SEVERITIES = ["low", "medium", "high"]
+    25→
+    26→# ----------------------------------------------------------------------------
+    27→# Schemas — passed verbatim to the Anthropic Messages API as the `tools` arg.
+    28→# ----------------------------------------------------------------------------
+    29→
+    30→# TODO: Populate TOOL_SCHEMAS with the first four tool schemas. Each schema
+    31→# is a dict with "name", "description", and "input_schema". Tool descriptions are read by
+    32→# the model on every turn — write them as if you were teaching the model what each tool is
+    33→# for and *when* to call it. Categorical fields ("claim_type", "severity") must use
+    34→# Anthropic's tool-use `enum` shape against CLAIM_TYPES and SEVERITIES.
+    35→#
+    36→#   - lookup_policy(policy_id: str)
+    37→#     Returns the policy record. Used early in the conversation.
+    38→#   - record_claim_fact(field: str, value: str)
+    39→#     Records one normalized fact (incident_date, location, items_lost, ...).
+    40→#   - classify_claim(claim_type: enum CLAIM_TYPES, confidence: number in [0,1], rationale: str)
+    41→#     Commits the model to a claim type with a confidence score.
+    42→#   - assess_severity(severity: enum SEVERITIES, rationale: str)
+    43→#     Commits the model to a severity bucket.
+    44→#
+    45→# Later tools (request_clarification, route_to_adjuster, escalate_to_human) extend this list.
+    46→TOOL_SCHEMAS: list[dict[str, Any]] = []
+    47→
+    48→# ----------------------------------------------------------------------------
+    49→# Errors — Graceful Tool Failure shape
+    50→# ----------------------------------------------------------------------------
+    51→
+    52→
+    53→def _err(category: str, retryable: bool, message: str) -> str:
+    54→    # TODO: Return a JSON string with these keys (the Graceful Tool Failure shape):
+    55→    #   is_error: True
+    56→    #   error_category: category   ("transient" or "permanent")
+    57→    #   is_retryable: retryable
+    58→    #   message: message
+    59→    # The shape is what tool_result content carries when the model needs to read an error
+    60→    # and adapt rather than crash the loop.
+    61→    return '{"is_error": true, "message": "TODO: _err not implemented"}'
+    62→
+    63→
+    64→def _ok(payload: dict[str, Any]) -> str:
+    65→    # TODO: Return json.dumps(payload). Tool results are always strings;
+    66→    # the model parses them on the next turn.
+    67→    return "{}"
+    68→
+    69→
+    70→# ----------------------------------------------------------------------------
+    71→# Tool implementations
+    72→# ----------------------------------------------------------------------------
+    73→
+    74→
+    75→def _t_lookup_policy(session: ClaimSession, inp: dict[str, Any]) -> str:
+    76→    # TODO: Read inp["policy_id"]; if not a string, return a permanent error.
+    77→    # Look it up in session.policies; if missing, return a permanent error naming the id.
+    78→    # Otherwise return the policy dict via _ok(...).
+    79→    return _err("permanent", False, "TODO: _t_lookup_policy not implemented yet")
+    80→
+    81→
+    82→def _t_record_claim_fact(session: ClaimSession, inp: dict[str, Any]) -> str:
+    83→    # TODO: Validate inp["field"] and inp["value"] are both strings; store
+    84→    # session.case_facts[field] = value; return _ok with {"recorded": True, "field": field,
+    85→    # "case_facts_count": len(session.case_facts)}.
+    86→    return _err("permanent", False, "TODO: _t_record_claim_fact not implemented yet")
+    87→
+    88→
+    89→def _t_classify_claim(session: ClaimSession, inp: dict[str, Any]) -> str:
+    90→    # TODO: Validate claim_type (in CLAIM_TYPES), confidence (number in [0,1]),
+    91→    # rationale (string). Store session.classification = {claim_type, confidence, rationale}
+    92→    # and return _ok with the recorded values plus {"recorded": True}.
+    93→    return _err("permanent", False, "TODO: _t_classify_claim not implemented yet")
+    94→
+    95→
+    96→def _t_assess_severity(session: ClaimSession, inp: dict[str, Any]) -> str:
+    97→    # TODO: Validate severity (in SEVERITIES) and rationale (string).
+    98→    # Store session.severity = {severity, rationale} and return _ok with the recorded
+    99→    # values plus {"recorded": True}.
+   100→    return _err("permanent", False, "TODO: _t_assess_severity not implemented yet")
+   101→
+   102→
+   103→def _t_request_clarification(session: ClaimSession, inp: dict[str, Any]) -> str:
+   104→    # TODO: Implement the clarification dispatcher.
+   105→    #   1. Validate inp["question"] is a string and inp["ambiguity_between"] is a list of
+   106→    #      at least 2 entries; otherwise return _err("permanent", False, ...).
+   107→    #   2. Record the asked clarification in session.clarifications_asked (so the runner
+   108→    #      can count it).
+   109→    #   3. Substring-match the question (case-insensitive) against the keys in
+   110→    #      session.clarification_responses; if any key appears in the question, return
+   111→    #      _ok({"claimant_reply": <the matching reply>}).
+   112→    #   4. Otherwise return _ok({"claimant_reply": "NO_RESPONSE"}).
+   113→    return _err("permanent", False, "TODO: _t_request_clarification not implemented yet")
+   114→
+   115→
+   116→def _t_route_to_adjuster(session: ClaimSession, inp: dict[str, Any]) -> str:
+   117→    # TODO: Implement the routing terminal tool.
+   118→    #   1. Guard against double-terminal: if session.terminal_called, return an error.
+   119→    #   2. Validate inp["queue"] is in CLAIM_TYPES and inp["claim_summary"] is a string.
+   120→    #   3. Require session.classification and session.severity to be set; otherwise error.
+   121→    #   4. Build the routing record (claim_id, policy_id, claim_type, severity, confidence,
+   122→    #      rationale, claim_summary, case_facts) and assign it to session.routing.
+   123→    #   5. Append the record to runs/<run>/queues/<queue>.jsonl via _append_jsonl.
+   124→    #   6. Return _ok({"routed": True, "queue": queue}).
+   125→    return _err("permanent", False, "TODO: _t_route_to_adjuster not implemented yet")
+   126→
+   127→
+   128→def _t_escalate_to_human(session: ClaimSession, inp: dict[str, Any]) -> str:
+   129→    # TODO: Implement the escalation terminal tool.
+   130→    #   1. Guard against double-terminal: if session.terminal_called, return an error.
+   131→    #   2. Validate inp["reason"] is a string and inp["structured_summary"] is a dict
+   132→    #      containing all required keys: policy_id, root_cause, candidate_claim_types,
+   133→    #      case_facts, recommended_action, confidence. Return an error listing any missing
+   134→    #      fields by name.
+   135→    #   3. Build the escalation record (claim_id, policy_id, reason, **structured_summary,
+   136→    #      case_facts_at_escalation) and assign it to session.escalation.
+   137→    #   4. Append it to runs/<run>/escalations.jsonl via _append_jsonl.
+   138→    #   5. Return _ok({"escalated": True}).
+   139→    return _err("permanent", False, "TODO: _t_escalate_to_human not implemented yet")
+   140→
+   141→
+   142→# ----------------------------------------------------------------------------
+   143→# Dispatcher
+   144→# ----------------------------------------------------------------------------
+   145→
+   146→
+   147→_DISPATCH = {
+   148→    "lookup_policy": _t_lookup_policy,
+   149→    "record_claim_fact": _t_record_claim_fact,
+   150→    "classify_claim": _t_classify_claim,
+   151→    "assess_severity": _t_assess_severity,
+   152→    "request_clarification": _t_request_clarification,
+   153→    "route_to_adjuster": _t_route_to_adjuster,
+   154→    "escalate_to_human": _t_escalate_to_human,
+   155→}
+   156→
+   157→
+   158→def make_executor(session: ClaimSession) -> Executor:
+   159→    """Return a ToolExecutor callable bound to this session."""
+   160→
+   161→    def execute(name: str, tool_input: dict[str, Any]) -> str:
+   162→        handler = _DISPATCH.get(name)
+   163→        if handler is None:
+   164→            return _err("permanent", False, f"unknown tool: {name}")
+   165→        try:
+   166→            return handler(session, tool_input)
+   167→        except Exception as exc:
+   168→            # Defensive: anything raised inside a handler becomes a graceful error,
+   169→            # never crashes the loop.
+   170→            return _err("transient", True, f"{type(exc).__name__}: {exc}")
+   171→
+   172→    return execute
+   173→
+   174→
+   175→# Type alias for clarity; the loop only sees a Callable.
+   176→Executor = Any
+   177→
+   178→
+   179→def _append_jsonl(path: Path, record: dict[str, Any]) -> None:
+   180→    path.parent.mkdir(parents=True, exist_ok=True)
+   181→    with path.open("a", encoding="utf-8") as fh:
+   182→        fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+   183→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

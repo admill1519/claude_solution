@@ -1,0 +1,47 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/claims_intake/tools.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+   266→
+   267→    return _ok({"claimant_reply": "NO_RESPONSE"})
+   268→
+   269→
+   270→def _t_route_to_adjuster(session: ClaimSession, inp: dict[str, Any]) -> str:
+   271→    # Guard against double-terminal
+   272→    if session.terminal_called:
+   273→        return _err("permanent", False, "Terminal action already called (routing or escalation)")
+   274→
+   275→    queue = inp.get("queue")
+   276→    claim_summary = inp.get("claim_summary")
+   277→
+   278→    # Validate inputs
+   279→    if queue not in CLAIM_TYPES:
+   280→        return _err("permanent", False, f"queue must be one of {CLAIM_TYPES}")
+   281→    if not isinstance(claim_summary, str):
+   282→        return _err("permanent", False, "claim_summary must be a string")
+   283→
+   284→    # Require classification and severity
+   285→    if session.classification is None:
+   286→        return _err("permanent", False, "classify_claim must be called before routing")
+   287→    if session.severity is None:
+   288→        return _err("permanent", False, "assess_severity must be called before routing")
+   289→
+   290→    # Build the routing record
+   291→    record = {
+   292→        "claim_id": session.claim_id,
+   293→        "policy_id": session.policy_id,
+   294→        "claim_type": session.classification["claim_type"],
+   295→        "severity": session.severity["severity"],
+   296→        "confidence": session.classification["confidence"],
+   297→        "rationale": session.classification["rationale"],
+   298→        "claim_summary": claim_summary,
+   299→        "case_facts": session.case_facts,
+   300→    }
+   301→    session.routing = record
+   302→
+   303→    # Append to queue file
+   304→    queue_file = session.run_dir / "queues" / f"{queue}.jsonl"
+   305→    _append_jsonl(queue_file, record)
+   306→
+   307→    return _ok({"routed": True, "queue": queue})
+   308→
+   309→
+   310→def _t_escalate_to_human(session: ClaimSession, inp: dict[str, Any]) -> str:
+   311→    # TODO: Implement the escalation terminal tool.

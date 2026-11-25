@@ -1,0 +1,135 @@
+     1→# Workspace Python Environments
+     2→
+     3→This workspace provides two Python environments for different use cases.
+     4→
+     5→- **`py3.10-exercises/cd14715-claude-code-classroom/`** → Runs in the system Python 3.10 (no activation needed)
+     6→
+     7→- **`py3.13-exercises-and-project/`** → Must run in the Python 3.13 virtual environment (`source /voc/data/py313-venv/bin/activate`)
+     8→
+     9→**Quick Reference**
+    10→
+    11→| Task | Command |
+    12→|------|---------|
+    13→| Use system Python (3.10) | `python` (default) |
+    14→| Activate Python 3.13 | `source /voc/data/py313-venv/bin/activate` |
+    15→| Deactivate Python 3.13 | `deactivate` |
+    16→| Check Python version | `python --version` |
+    17→| Run Python 3.13 exercises | Activate venv, then run exercise commands |
+    18→| Run Python 3.10 exercises | Use default Python without activation |
+    19→
+    20→
+    21→> ⚠️ **IMPORTANT: Use the correct Python environment for each folder:**
+    22→
+    23→## 1. System Python (Python 3.10)
+    24→
+    25→The default system Python is version 3.10 with a comprehensive set of data science and ML packages pre-installed.
+    26→
+    27→**Usage:**
+    28→```bash
+    29→python --version
+    30→# Python 3.10.x
+    31→
+    32→# Run a script
+    33→python your_script.py
+    34→```
+    35→
+    36→### 1.1. Python 3.10 Exercises (`py3.10-exercises/cd14715-claude-code-classroom/`)
+    37→
+    38→**Use the default system Python 3.10 for this folder.**
+    39→
+    40→This folder contains exercises designed to run with Python 3.10 and covers Claude Code classroom topics.
+    41→
+    42→**To run exercises with Python 3.10:**
+    43→```bash
+    44→# 1. Use the default system Python (no activation needed)
+    45→python --version  # Should show Python 3.10.x
+    46→
+    47→# 2. Navigate to an exercise folder
+    48→cd py3.10-exercises/cd14715-claude-code-classroom/
+    49→
+    50→# 3. Run the exercise with Python 3.10
+    51→python your_script.py
+    52→```
+    53→
+    54→### 1.2. Installed Packages - System Python (3.10)
+    55→See full list in: `py3.10-exercises/requirements.txt`
+    56→
+    57→Includes:
+    58→- TensorFlow, PyTorch, Keras
+    59→- pandas, numpy, scikit-learn
+    60→- langchain, openai, anthropic
+    61→- jupyter, matplotlib, seaborn
+    62→- And many more data science packages
+    63→
+    64→
+    65→## 2. Python 3.13 Virtual Environment
+    66→
+    67→A Python 3.13 virtual environment is available with modern tooling packages (anthropic, pytest, mypy, ruff, etc.).
+    68→
+    69→**To activate the Python 3.13 environment:**
+    70→```bash
+    71→source /voc/data/py313-venv/bin/activate
+    72→```
+    73→
+    74→After activation, your prompt will change to show `(py313-venv)` and Python commands will use version 3.13:
+    75→```bash
+    76→python --version
+    77→# Python 3.13.18
+    78→```
+    79→
+    80→**To deactivate and return to system Python:**
+    81→```bash
+    82→deactivate
+    83→```
+    84→
+    85→
+    86→### 2.1. Python 3.13 Exercises and Project (`py3.13-exercises-and-project/`)
+    87→
+    88→**Use Python 3.13 environment for this folder.**
+    89→
+    90→This folder contains:
+    91→- **Exercises**: Progressive tutorials on building advanced AI systems with Claude
+    92→  - Build a Claims Intake Agent with a stop_reason-Driven Loop
+    93→  - Engineer a Long-Conversation Context Strategy for a Retail Support Copilot
+    94→  - Configure Claude Code for a Multi-Surface Monorepo Team
+    95→  - Build a Multi-Shift Quality Monitoring System with Claude Orchestration
+    96→
+    97→- **Project (Capstone)**: A hands-on integrative project called "Harness Engineering with Claude and Claude Code"
+    98→  - Build and run the four completed systems from the course exercises
+    99→  - Verify implementations and capture artifacts
+   100→  - Write an evidence-grounded reflection brief analyzing architectural decisions
+   101→
+   102→**Each exercise has:**
+   103→- `starter/` folder: Fill-in-the-blank exercises for learning
+   104→- `solution/` folder: Completed reference implementation
+   105→
+   106→**To run exercises/project with Python 3.13:**
+   107→```bash
+   108→# 1. Activate the Python 3.13 environment
+   109→source /voc/data/py313-venv/bin/activate
+   110→
+   111→# 2. Navigate to an exercise starter folder
+   112→cd py3.13-exercises-and-project/Build\ a\ Claims\ Intake\ Agent\ with\ a\ stop_reason-Driven\ Loop/exercises/01-loop/starter
+   113→
+   114→# 3. Run the exercise (example command)
+   115→python -m claims_intake.run --all
+   116→
+   117→# 4. When done, deactivate the environment
+   118→deactivate
+   119→```
+   120→
+   121→
+   122→### 2.2. Python 3.13 Virtual Environment Packages
+   123→See full list in: `py3.13-exercises-and-project/requirements.py313-venv.txt`
+   124→
+   125→Includes:
+   126→- anthropic (Claude SDK)
+   127→- pydantic
+   128→- pytest, mypy, ruff (dev tools)
+   129→- uv (fast Python package manager)
+   130→
+   131→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

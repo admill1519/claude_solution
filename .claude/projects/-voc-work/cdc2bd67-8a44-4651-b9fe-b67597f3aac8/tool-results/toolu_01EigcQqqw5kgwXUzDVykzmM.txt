@@ -1,0 +1,39 @@
+./.claude/plugins/marketplaces/anthropics-claude-plugins-official/plugins/code-modernization/scripts/tests
+./.claude/plugins/marketplaces/anthropics-claude-plugins-official/plugins/code-modernization/tests
+./py3.13-exercises-and-project/Build a Multi-Shift Quality Monitoring System with Claude Orchestration/02-invocation-pipeline/starter/tests
+./py3.13-exercises-and-project/Build a Multi-Shift Quality Monitoring System with Claude Orchestration/02-invocation-pipeline/solution/tests
+./py3.13-exercises-and-project/Build a Multi-Shift Quality Monitoring System with Claude Orchestration/01-tiered-state/starter/tests
+./py3.13-exercises-and-project/Build a Multi-Shift Quality Monitoring System with Claude Orchestration/01-tiered-state/solution/tests
+./py3.13-exercises-and-project/Build a Multi-Shift Quality Monitoring System with Claude Orchestration/04-fork-scratchpad/starter/tests
+./py3.13-exercises-and-project/Build a Multi-Shift Quality Monitoring System with Claude Orchestration/04-fork-scratchpad/solution/tests
+./py3.13-exercises-and-project/Build a Multi-Shift Quality Monitoring System with Claude Orchestration/03-crash-recovery/starter/tests
+./py3.13-exercises-and-project/Build a Multi-Shift Quality Monitoring System with Claude Orchestration/03-crash-recovery/solution/tests
+./py3.13-exercises-and-project/Configure Claude Code for a Multi-Surface Monorepo Team/04-plan-mode-and-explore-decision-doc/starter/tests
+./py3.13-exercises-and-project/Configure Claude Code for a Multi-Surface Monorepo Team/04-plan-mode-and-explore-decision-doc/solution/tests
+./py3.13-exercises-and-project/Configure Claude Code for a Multi-Surface Monorepo Team/03-author-forked-deploy-check-skill/starter/tests
+./py3.13-exercises-and-project/Configure Claude Code for a Multi-Surface Monorepo Team/03-author-forked-deploy-check-skill/solution/tests
+./py3.13-exercises-and-project/Configure Claude Code for a Multi-Surface Monorepo Team/02-author-project-scoped-review-command/starter/tests
+./py3.13-exercises-and-project/Configure Claude Code for a Multi-Surface Monorepo Team/02-author-project-scoped-review-command/solution/tests
+./py3.13-exercises-and-project/Configure Claude Code for a Multi-Surface Monorepo Team/01-compose-modular-claude-code-configuration/starter/tests
+./py3.13-exercises-and-project/Configure Claude Code for a Multi-Surface Monorepo Team/01-compose-modular-claude-code-configuration/solution/tests
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/01-loop/starter/tests
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/01-loop/starter/tests/test_loop.py
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/01-loop/solution/tests
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/01-loop/solution/tests/test_loop.py
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/tests
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/tests/test_loop.py
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/solution/tests
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/solution/tests/test_loop.py
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/starter/tests
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/starter/tests/test_loop.py
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/solution/tests
+./py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/solution/tests/test_loop.py
+./py3.13-exercises-and-project/Engineer a Long-Conversation Context Strategy for a Retail Support Copilot/04-assemble-and-locate/starter/tests
+./py3.13-exercises-and-project/Engineer a Long-Conversation Context Strategy for a Retail Support Copilot/04-assemble-and-locate/solution/tests
+./py3.13-exercises-and-project/Engineer a Long-Conversation Context Strategy for a Retail Support Copilot/02-case-facts-block/starter/tests
+./py3.13-exercises-and-project/Engineer a Long-Conversation Context Strategy for a Retail Support Copilot/02-case-facts-block/solution/tests
+./py3.13-exercises-and-project/Engineer a Long-Conversation Context Strategy for a Retail Support Copilot/01-prune-tool-output/starter/tests
+./py3.13-exercises-and-project/Engineer a Long-Conversation Context Strategy for a Retail Support Copilot/01-prune-tool-output/solution/tests
+./py3.13-exercises-and-project/Engineer a Long-Conversation Context Strategy for a Retail Support Copilot/03-compress-with-budget/starter/tests
+./py3.13-exercises-and-project/Engineer a Long-Conversation Context Strategy for a Retail Support Copilot/03-compress-with-budget/solution/tests
+./py3.10-exercises/cd14715-claude-code-classroom/project/starter/tests

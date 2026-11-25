@@ -1,0 +1,126 @@
+     1→"""The agentic loop.
+     2→
+     3→The defining contract:
+     4→- Control flow is driven by `response.stop_reason`.
+     5→- Loop continues iff stop_reason == "tool_use".
+     6→- Loop returns iff stop_reason == "end_turn".
+     7→- Any other stop_reason raises UnexpectedStopReason.
+     8→
+     9→No string-membership tests against assistant text drive control flow here.
+    10→No integer-literal iteration cap is the primary stopping mechanism.
+    11→A Budget (token + wall-clock, sourced from config) is the safety net and raises
+    12→BudgetExceeded if hit — it never silently truncates.
+    13→"""
+    14→
+    15→import time
+    16→from collections.abc import Callable
+    17→from dataclasses import dataclass, field
+    18→from typing import Any, Protocol
+    19→
+    20→from claims_intake.budget import Budget
+    21→from claims_intake.tracer import Tracer
+    22→
+    23→
+    24→class UnexpectedStopReason(Exception):
+    25→    pass
+    26→
+    27→
+    28→ToolExecutor = Callable[[str, dict[str, Any]], str]
+    29→"""Takes (tool_name, tool_input) and returns the tool_result content as a string.
+    30→Errors are returned as a serialized JSON string with is_error=true; never raised."""
+    31→
+    32→
+    33→class MessagesClient(Protocol):
+    34→    def create(self, **kwargs: Any) -> Any: ...
+    35→
+    36→
+    37→@dataclass
+    38→class FinalState:
+    39→    messages: list[dict[str, Any]]
+    40→    total_input_tokens: int
+    41→    total_output_tokens: int
+    42→    turn_count: int
+    43→    final_content: list[Any] = field(default_factory=list)
+    44→
+    45→
+    46→def run(
+    47→    *,
+    48→    client: Any,
+    49→    model: str,
+    50→    system: str,
+    51→    tools: list[dict[str, Any]],
+    52→    messages: list[dict[str, Any]],
+    53→    tool_executor: ToolExecutor,
+    54→    budget: Budget,
+    55→    tracer: Tracer,
+    56→    max_tokens: int = 4096,
+    57→) -> FinalState:
+    58→    """Run the agentic loop until the model returns stop_reason == "end_turn".
+    59→
+    60→    The loop condition is `response.stop_reason == "tool_use"` — nothing else.
+    61→    There is no `while turn < N` cap. The Budget object is the safety mechanism.
+    62→    """
+    63→    working_messages = list(messages)
+    64→    turn = 0
+    65→    total_input = 0
+    66→    total_output = 0
+    67→
+    68→    while True:
+    69→        turn += 1
+    70→        budget.check()
+    71→        t0 = time.monotonic()
+    72→        response = client.messages.create(
+    73→            model=model,
+    74→            max_tokens=max_tokens,
+    75→            system=system,
+    76→            tools=tools,
+    77→            messages=working_messages,
+    78→        )
+    79→        latency_ms = (time.monotonic() - t0) * 1000.0
+    80→
+    81→        input_tokens = int(response.usage.input_tokens)
+    82→        output_tokens = int(response.usage.output_tokens)
+    83→        total_input += input_tokens
+    84→        total_output += output_tokens
+    85→        budget.record_input_tokens(input_tokens)
+    86→
+    87→        # TODO:Build a trace record for this turn and write it.
+    88→        # The record is a dict with these keys:
+    89→        #     turn:           the turn counter
+    90→        #     stop_reason:    response.stop_reason
+    91→        #     tool_calls:     a list of {id, name, input} dicts, one per tool_use block
+    92→        #                     in response.content (skip non-tool_use blocks)
+    93→        #     latency_ms:     round(latency_ms, 1)
+    94→        #     input_tokens:   input_tokens
+    95→        #     output_tokens:  output_tokens
+    96→        # Call `tracer.write(record)`.
+    97→
+    98→        # TODO:Triage on response.stop_reason. The whole point of the
+    99→        # agentic loop is that THIS is what drives control flow — not the message text,
+   100→        # not a turn count, not the presence of a magic string.
+   101→        #
+   102→        # Case 1: response.stop_reason == "end_turn"
+   103→        #   Append the assistant turn to working_messages:
+   104→        #       {"role": "assistant", "content": response.content}
+   105→        #   Return a FinalState carrying working_messages, the running token totals,
+   106→        #   the turn count, and the final assistant content.
+   107→        #
+   108→        # Case 2: response.stop_reason == "tool_use"
+   109→        #   Append the assistant turn to working_messages (same shape as Case 1).
+   110→        #   For every tool_use block in response.content, call
+   111→        #       tool_executor(block.name, dict(block.input))
+   112→        #   and collect the result into a tool_result block:
+   113→        #       {"type": "tool_result", "tool_use_id": block.id, "content": <result>}
+   114→        #   ALL of these tool_result blocks go into ONE user turn together — not one
+   115→        #   user turn per tool. Append that single user turn to working_messages and
+   116→        #   `continue` the loop.
+   117→        #
+   118→        # Case 3: anything else
+   119→        #   Raise UnexpectedStopReason naming the turn and the offending stop_reason.
+   120→        #   Do NOT silently retry, do NOT guess, do NOT treat max_tokens as success.
+   121→        raise NotImplementedError("Exercise 1: implement the stop_reason triage")
+   122→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

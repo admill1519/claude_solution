@@ -1,0 +1,130 @@
+   150→        return _err("permanent", False, "policy_id must be a string")
+   151→    policy = session.policies.get(pid)
+   152→    if policy is None:
+   153→        return _err("permanent", False, f"policy_id {pid!r} not found")
+   154→    return _ok(policy)
+   155→
+   156→
+   157→def _t_record_claim_fact(session: ClaimSession, inp: dict[str, Any]) -> str:
+   158→    field = inp.get("field")
+   159→    value = inp.get("value")
+   160→    if not isinstance(field, str) or not isinstance(value, str):
+   161→        return _err("permanent", False, "field and value must both be strings")
+   162→    session.case_facts[field] = value
+   163→    return _ok({"recorded": True, "field": field, "case_facts_count": len(session.case_facts)})
+   164→
+   165→
+   166→def _t_classify_claim(session: ClaimSession, inp: dict[str, Any]) -> str:
+   167→    claim_type = inp.get("claim_type")
+   168→    confidence = inp.get("confidence")
+   169→    rationale = inp.get("rationale")
+   170→    if claim_type not in CLAIM_TYPES:
+   171→        return _err("permanent", False, f"claim_type must be one of {CLAIM_TYPES}")
+   172→    if not isinstance(confidence, (int, float)) or not 0.0 <= float(confidence) <= 1.0:
+   173→        return _err("permanent", False, "confidence must be a number in [0,1]")
+   174→    if not isinstance(rationale, str):
+   175→        return _err("permanent", False, "rationale must be a string")
+   176→    session.classification = {
+   177→        "claim_type": claim_type,
+   178→        "confidence": float(confidence),
+   179→        "rationale": rationale,
+   180→    }
+   181→    return _ok({"recorded": True, **session.classification})
+   182→
+   183→
+   184→def _t_assess_severity(session: ClaimSession, inp: dict[str, Any]) -> str:
+   185→    severity = inp.get("severity")
+   186→    rationale = inp.get("rationale")
+   187→    if severity not in SEVERITIES:
+   188→        return _err("permanent", False, f"severity must be one of {SEVERITIES}")
+   189→    if not isinstance(rationale, str):
+   190→        return _err("permanent", False, "rationale must be a string")
+   191→    session.severity = {"severity": severity, "rationale": rationale}
+   192→    return _ok({"recorded": True, **session.severity})
+   193→
+   194→
+   195→def _t_request_clarification(session: ClaimSession, inp: dict[str, Any]) -> str:
+   196→    # TODO: Implement the clarification dispatcher.
+   197→    #   1. Validate inp["question"] is a string and inp["ambiguity_between"] is a list of
+   198→    #      at least 2 entries; otherwise return _err("permanent", False, ...).
+   199→    #   2. Record the asked clarification in session.clarifications_asked (so the runner
+   200→    #      can count it).
+   201→    #   3. Substring-match the question (case-insensitive) against the keys in
+   202→    #      session.clarification_responses; if any key appears in the question, return
+   203→    #      _ok({"claimant_reply": <the matching reply>}).
+   204→    #   4. Otherwise return _ok({"claimant_reply": "NO_RESPONSE"}).
+   205→    return _err("permanent", False, "TODO: _t_request_clarification not implemented yet")
+   206→
+   207→
+   208→def _t_route_to_adjuster(session: ClaimSession, inp: dict[str, Any]) -> str:
+   209→    # TODO: Implement the routing terminal tool.
+   210→    #   1. Guard against double-terminal: if session.terminal_called, return an error.
+   211→    #   2. Validate inp["queue"] is in CLAIM_TYPES and inp["claim_summary"] is a string.
+   212→    #   3. Require session.classification and session.severity to be set; otherwise error.
+   213→    #   4. Build the routing record (claim_id, policy_id, claim_type, severity, confidence,
+   214→    #      rationale, claim_summary, case_facts) and assign it to session.routing.
+   215→    #   5. Append the record to runs/<run>/queues/<queue>.jsonl via _append_jsonl.
+   216→    #   6. Return _ok({"routed": True, "queue": queue}).
+   217→    return _err("permanent", False, "TODO: _t_route_to_adjuster not implemented yet")
+   218→
+   219→
+   220→def _t_escalate_to_human(session: ClaimSession, inp: dict[str, Any]) -> str:
+   221→    # TODO: Implement the escalation terminal tool.
+   222→    #   1. Guard against double-terminal: if session.terminal_called, return an error.
+   223→    #   2. Validate inp["reason"] is a string and inp["structured_summary"] is a dict
+   224→    #      containing all required keys: policy_id, root_cause, candidate_claim_types,
+   225→    #      case_facts, recommended_action, confidence. Return an error listing any missing
+   226→    #      fields by name.
+   227→    #   3. Build the escalation record (claim_id, policy_id, reason, **structured_summary,
+   228→    #      case_facts_at_escalation) and assign it to session.escalation.
+   229→    #   4. Append it to runs/<run>/escalations.jsonl via _append_jsonl.
+   230→    #   5. Return _ok({"escalated": True}).
+   231→    return _err("permanent", False, "TODO: _t_escalate_to_human not implemented yet")
+   232→
+   233→
+   234→# ----------------------------------------------------------------------------
+   235→# Dispatcher
+   236→# ----------------------------------------------------------------------------
+   237→
+   238→
+   239→_DISPATCH = {
+   240→    "lookup_policy": _t_lookup_policy,
+   241→    "record_claim_fact": _t_record_claim_fact,
+   242→    "classify_claim": _t_classify_claim,
+   243→    "assess_severity": _t_assess_severity,
+   244→    "request_clarification": _t_request_clarification,
+   245→    "route_to_adjuster": _t_route_to_adjuster,
+   246→    "escalate_to_human": _t_escalate_to_human,
+   247→}
+   248→
+   249→
+   250→def make_executor(session: ClaimSession) -> Executor:
+   251→    """Return a ToolExecutor callable bound to this session."""
+   252→
+   253→    def execute(name: str, tool_input: dict[str, Any]) -> str:
+   254→        handler = _DISPATCH.get(name)
+   255→        if handler is None:
+   256→            return _err("permanent", False, f"unknown tool: {name}")
+   257→        try:
+   258→            return handler(session, tool_input)
+   259→        except Exception as exc:
+   260→            # Defensive: anything raised inside a handler becomes a graceful error,
+   261→            # never crashes the loop.
+   262→            return _err("transient", True, f"{type(exc).__name__}: {exc}")
+   263→
+   264→    return execute
+   265→
+   266→
+   267→# Type alias for clarity; the loop only sees a Callable.
+   268→Executor = Any
+   269→
+   270→
+   271→def _append_jsonl(path: Path, record: dict[str, Any]) -> None:
+   272→    path.parent.mkdir(parents=True, exist_ok=True)
+   273→    with path.open("a", encoding="utf-8") as fh:
+   274→        fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+   275→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

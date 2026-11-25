@@ -1,0 +1,118 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/claims_intake/tools.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+    41→#     Commits the model to a claim type with a confidence score.
+    42→#   - assess_severity(severity: enum SEVERITIES, rationale: str)
+    43→#     Commits the model to a severity bucket.
+    44→#
+    45→# Later tools (request_clarification, route_to_adjuster, escalate_to_human) extend this list.
+    46→TOOL_SCHEMAS: list[dict[str, Any]] = [
+    47→    {
+    48→        "name": "lookup_policy",
+    49→        "description": "Retrieve a policy record by policy_id. Use this early in the conversation to understand the customer's coverage and deductible.",
+    50→        "input_schema": {
+    51→            "type": "object",
+    52→            "properties": {
+    53→                "policy_id": {"type": "string", "description": "The policy ID to look up"}
+    54→            },
+    55→            "required": ["policy_id"],
+    56→        },
+    57→    },
+    58→    {
+    59→        "name": "record_claim_fact",
+    60→        "description": "Record a normalized fact about the claim (e.g., incident_date, location, items_lost). Call this repeatedly to build up the case facts.",
+    61→        "input_schema": {
+    62→            "type": "object",
+    63→            "properties": {
+    64→                "field": {"type": "string", "description": "The fact field name (e.g., 'location', 'incident_date')"},
+    65→                "value": {"type": "string", "description": "The fact value"},
+    66→            },
+    67→            "required": ["field", "value"],
+    68→        },
+    69→    },
+    70→    {
+    71→        "name": "classify_claim",
+    72→        "description": "Classify the claim into a type with a confidence score (0–1). This is a commit — once set, it guides the rest of the conversation.",
+    73→        "input_schema": {
+    74→            "type": "object",
+    75→            "properties": {
+    76→                "claim_type": {"type": "string", "enum": CLAIM_TYPES, "description": "The claim type"},
+    77→                "confidence": {"type": "number", "description": "Confidence score between 0 and 1"},
+    78→                "rationale": {"type": "string", "description": "Why you chose this type"},
+    79→            },
+    80→            "required": ["claim_type", "confidence", "rationale"],
+    81→        },
+    82→    },
+    83→    {
+    84→        "name": "assess_severity",
+    85→        "description": "Assess the claim severity (low, medium, high). This is a commit — routing and escalation decisions depend on it.",
+    86→        "input_schema": {
+    87→            "type": "object",
+    88→            "properties": {
+    89→                "severity": {"type": "string", "enum": SEVERITIES, "description": "The severity level"},
+    90→                "rationale": {"type": "string", "description": "Why you chose this severity"},
+    91→            },
+    92→            "required": ["severity", "rationale"],
+    93→        },
+    94→    },
+    95→    {
+    96→        "name": "request_clarification",
+    97→        "description": "Ask the claimant a question to resolve ambiguity. If a matching scripted response exists, it is returned; otherwise 'NO_RESPONSE' is returned.",
+    98→        "input_schema": {
+    99→            "type": "object",
+   100→            "properties": {
+   101→                "question": {"type": "string", "description": "The question to ask the claimant"},
+   102→                "ambiguity_between": {
+   103→                    "type": "array",
+   104→                    "items": {"type": "string"},
+   105→                    "description": "List of claim types under consideration",
+   106→                },
+   107→            },
+   108→            "required": ["question", "ambiguity_between"],
+   109→        },
+   110→    },
+   111→    {
+   112→        "name": "route_to_adjuster",
+   113→        "description": "Route the claim to an adjuster queue. This is a terminal action — the claim exits the loop.",
+   114→        "input_schema": {
+   115→            "type": "object",
+   116→            "properties": {
+   117→                "queue": {"type": "string", "enum": CLAIM_TYPES, "description": "The adjuster queue"},
+   118→                "claim_summary": {"type": "string", "description": "A brief summary of the claim"},
+   119→            },
+   120→            "required": ["queue", "claim_summary"],
+   121→        },
+   122→    },
+   123→    {
+   124→        "name": "escalate_to_human",
+   125→        "description": "Escalate the claim to a human for manual review. This is a terminal action — the claim exits the loop.",
+   126→        "input_schema": {
+   127→            "type": "object",
+   128→            "properties": {
+   129→                "reason": {"type": "string", "description": "Reason for escalation (e.g., 'unresolved_ambiguity', 'policy_exception')"},
+   130→                "structured_summary": {
+   131→                    "type": "object",
+   132→                    "properties": {
+   133→                        "policy_id": {"type": "string"},
+   134→                        "root_cause": {"type": "string"},
+   135→                        "candidate_claim_types": {"type": "array", "items": {"type": "string"}},
+   136→                        "case_facts": {"type": "object"},
+   137→                        "recommended_action": {"type": "string"},
+   138→                        "confidence": {"type": "number"},
+   139→                    },
+   140→                    "required": [
+   141→                        "policy_id",
+   142→                        "root_cause",
+   143→                        "candidate_claim_types",
+   144→                        "case_facts",
+   145→                        "recommended_action",
+   146→                        "confidence",
+   147→                    ],
+   148→                },
+   149→            },
+   150→            "required": ["reason", "structured_summary"],
+   151→        },
+   152→    },
+   153→]
+   154→
+   155→# ----------------------------------------------------------------------------
+   156→# Errors — Graceful Tool Failure shape
+   157→# ----------------------------------------------------------------------------

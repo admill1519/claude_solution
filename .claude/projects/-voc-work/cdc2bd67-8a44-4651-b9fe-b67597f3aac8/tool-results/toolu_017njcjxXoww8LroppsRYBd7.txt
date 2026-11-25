@@ -1,0 +1,196 @@
+     1→import json
+     2→from pathlib import Path
+     3→
+     4→from claims_intake.session import ClaimSession
+     5→from claims_intake.tools import CLAIM_TYPES, SEVERITIES, TOOL_SCHEMAS, make_executor
+     6→
+     7→
+     8→def _session(tmp_path: Path) -> ClaimSession:
+     9→    return ClaimSession(
+    10→        claim_id="claim_test",
+    11→        policy_id="POL-1",
+    12→        run_dir=tmp_path,
+    13→        policies={
+    14→            "POL-1": {
+    15→                "policy_id": "POL-1",
+    16→                "policy_holder": "Alex Doe",
+    17→                "coverage": ["property_damage", "theft"],
+    18→                "deductible": 500,
+    19→                "status": "active",
+    20→            }
+    21→        },
+    22→        clarification_responses={"locked": "yes it was locked"},
+    23→    )
+    24→
+    25→
+    26→def test_seven_tools_registered_with_schemas() -> None:
+    27→    names = {t["name"] for t in TOOL_SCHEMAS}
+    28→    assert names == {
+    29→        "lookup_policy",
+    30→        "record_claim_fact",
+    31→        "classify_claim",
+    32→        "assess_severity",
+    33→        "request_clarification",
+    34→        "route_to_adjuster",
+    35→        "escalate_to_human",
+    36→    }
+    37→    for schema in TOOL_SCHEMAS:
+    38→        assert "input_schema" in schema
+    39→        assert schema["input_schema"]["type"] == "object"
+    40→        assert "required" in schema["input_schema"]
+    41→
+    42→
+    43→def test_categorical_fields_use_enums() -> None:
+    44→    by_name = {t["name"]: t for t in TOOL_SCHEMAS}
+    45→    assert by_name["classify_claim"]["input_schema"]["properties"]["claim_type"]["enum"] == CLAIM_TYPES
+    46→    assert by_name["assess_severity"]["input_schema"]["properties"]["severity"]["enum"] == SEVERITIES
+    47→    assert by_name["route_to_adjuster"]["input_schema"]["properties"]["queue"]["enum"] == CLAIM_TYPES
+    48→
+    49→
+    50→def test_lookup_policy_returns_record(tmp_path: Path) -> None:
+    51→    s = _session(tmp_path)
+    52→    out = make_executor(s)("lookup_policy", {"policy_id": "POL-1"})
+    53→    payload = json.loads(out)
+    54→    assert payload["policy_holder"] == "Alex Doe"
+    55→
+    56→
+    57→def test_lookup_policy_unknown_id_returns_graceful_error(tmp_path: Path) -> None:
+    58→    s = _session(tmp_path)
+    59→    out = make_executor(s)("lookup_policy", {"policy_id": "POL-MISSING"})
+    60→    err = json.loads(out)
+    61→    assert err["is_error"] is True
+    62→    assert err["error_category"] == "permanent"
+    63→    assert err["is_retryable"] is False
+    64→    assert "not found" in err["message"]
+    65→
+    66→
+    67→def test_unknown_tool_returns_graceful_error(tmp_path: Path) -> None:
+    68→    s = _session(tmp_path)
+    69→    out = make_executor(s)("definitely_not_a_tool", {})
+    70→    err = json.loads(out)
+    71→    assert err["is_error"] is True
+    72→    assert err["error_category"] == "permanent"
+    73→
+    74→
+    75→def test_request_clarification_returns_scripted_reply(tmp_path: Path) -> None:
+    76→    s = _session(tmp_path)
+    77→    out = make_executor(s)(
+    78→        "request_clarification",
+    79→        {
+    80→            "question": "Was the bike locked when it was taken?",
+    81→            "ambiguity_between": ["theft", "property_damage"],
+    82→        },
+    83→    )
+    84→    payload = json.loads(out)
+    85→    assert payload["claimant_reply"] == "yes it was locked"
+    86→    assert len(s.clarifications_asked) == 1
+    87→
+    88→
+    89→def test_request_clarification_no_response_when_unscripted(tmp_path: Path) -> None:
+    90→    s = _session(tmp_path)
+    91→    out = make_executor(s)(
+    92→        "request_clarification",
+    93→        {
+    94→            "question": "What was the weather like that day?",
+    95→            "ambiguity_between": ["property_damage", "auto"],
+    96→        },
+    97→    )
+    98→    payload = json.loads(out)
+    99→    assert payload["claimant_reply"] == "NO_RESPONSE"
+   100→
+   101→
+   102→def test_routing_requires_classification_and_severity(tmp_path: Path) -> None:
+   103→    s = _session(tmp_path)
+   104→    out = make_executor(s)(
+   105→        "route_to_adjuster",
+   106→        {"queue": "property_damage", "claim_summary": "fire damage"},
+   107→    )
+   108→    err = json.loads(out)
+   109→    assert err["is_error"] is True
+   110→    assert "classify_claim must be called" in err["message"]
+   111→
+   112→
+   113→def test_routing_writes_jsonl_and_marks_terminal(tmp_path: Path) -> None:
+   114→    s = _session(tmp_path)
+   115→    exec_ = make_executor(s)
+   116→    exec_("classify_claim", {"claim_type": "property_damage", "confidence": 0.9, "rationale": "fire"})
+   117→    exec_("assess_severity", {"severity": "high", "rationale": "kitchen destroyed"})
+   118→    out = exec_("route_to_adjuster", {"queue": "property_damage", "claim_summary": "kitchen fire"})
+   119→    payload = json.loads(out)
+   120→    assert payload["routed"] is True
+   121→
+   122→    queue_file = tmp_path / "queues" / "property_damage.jsonl"
+   123→    assert queue_file.exists()
+   124→    record = json.loads(queue_file.read_text().strip())
+   125→    assert record["claim_type"] == "property_damage"
+   126→    assert record["severity"] == "high"
+   127→    assert record["confidence"] == 0.9
+   128→    assert s.terminal_called
+   129→    assert s.outcome == "routed"
+   130→
+   131→
+   132→def test_escalation_writes_jsonl_and_marks_terminal(tmp_path: Path) -> None:
+   133→    s = _session(tmp_path)
+   134→    exec_ = make_executor(s)
+   135→    out = exec_(
+   136→        "escalate_to_human",
+   137→        {
+   138→            "reason": "unresolved_ambiguity",
+   139→            "structured_summary": {
+   140→                "policy_id": "POL-1",
+   141→                "root_cause": "claimant cannot say whether water came from interior plumbing or neighbor's roof",
+   142→                "candidate_claim_types": ["property_damage", "liability"],
+   143→                "case_facts": {"location": "basement"},
+   144→                "recommended_action": "human adjuster site visit",
+   145→                "confidence": 0.4,
+   146→            },
+   147→        },
+   148→    )
+   149→    payload = json.loads(out)
+   150→    assert payload["escalated"] is True
+   151→
+   152→    esc_file = tmp_path / "escalations.jsonl"
+   153→    assert esc_file.exists()
+   154→    record = json.loads(esc_file.read_text().strip())
+   155→    assert record["confidence"] == 0.4
+   156→    assert record["candidate_claim_types"] == ["property_damage", "liability"]
+   157→    assert s.outcome == "escalated"
+   158→
+   159→
+   160→def test_double_terminal_is_graceful_error(tmp_path: Path) -> None:
+   161→    s = _session(tmp_path)
+   162→    exec_ = make_executor(s)
+   163→    exec_("classify_claim", {"claim_type": "theft", "confidence": 0.95, "rationale": "stolen"})
+   164→    exec_("assess_severity", {"severity": "low", "rationale": "low value"})
+   165→    exec_("route_to_adjuster", {"queue": "theft", "claim_summary": "bike theft"})
+   166→    out = exec_(
+   167→        "escalate_to_human",
+   168→        {
+   169→            "reason": "other",
+   170→            "structured_summary": {
+   171→                "policy_id": "POL-1",
+   172→                "root_cause": "x",
+   173→                "candidate_claim_types": ["theft"],
+   174→                "case_facts": {},
+   175→                "recommended_action": "x",
+   176→                "confidence": 0.5,
+   177→            },
+   178→        },
+   179→    )
+   180→    err = json.loads(out)
+   181→    assert err["is_error"] is True
+   182→    assert "already called" in err["message"]
+   183→
+   184→
+   185→def test_handler_exception_is_caught_as_transient_error(tmp_path: Path) -> None:
+   186→    s = _session(tmp_path)
+   187→    # Force a TypeError inside a handler by passing wrong shape that bypasses validation.
+   188→    # The dispatcher should still return a JSON error, not raise.
+   189→    out = make_executor(s)("classify_claim", {"claim_type": "auto", "confidence": "not-a-number", "rationale": "x"})
+   190→    err = json.loads(out)
+   191→    assert err["is_error"] is True
+   192→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

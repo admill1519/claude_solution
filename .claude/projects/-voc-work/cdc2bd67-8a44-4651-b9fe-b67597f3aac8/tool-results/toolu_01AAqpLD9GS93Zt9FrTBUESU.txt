@@ -1,0 +1,52 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/01-loop/starter/claims_intake/loop.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+    83→        total_input += input_tokens
+    84→        total_output += output_tokens
+    85→        budget.record_input_tokens(input_tokens)
+    86→
+    87→        # Build a trace record for this turn and write it.
+    88→        tool_calls = [
+    89→            {"id": block.id, "name": block.name, "input": block.input}
+    90→            for block in response.content
+    91→            if block.type == "tool_use"
+    92→        ]
+    93→        record = {
+    94→            "turn": turn,
+    95→            "stop_reason": response.stop_reason,
+    96→            "tool_calls": tool_calls,
+    97→            "latency_ms": round(latency_ms, 1),
+    98→            "input_tokens": input_tokens,
+    99→            "output_tokens": output_tokens,
+   100→        }
+   101→        tracer.write(record)
+   102→
+   103→        # Triage on response.stop_reason.
+   104→        if response.stop_reason == "end_turn":
+   105→            # Case 1: end_turn
+   106→            working_messages.append({"role": "assistant", "content": response.content})
+   107→            return FinalState(
+   108→                messages=working_messages,
+   109→                total_input_tokens=total_input,
+   110→                total_output_tokens=total_output,
+   111→                turn_count=turn,
+   112→                final_content=response.content,
+   113→            )
+   114→        elif response.stop_reason == "tool_use":
+   115→            # Case 2: tool_use
+   116→            working_messages.append({"role": "assistant", "content": response.content})
+   117→            tool_results = []
+   118→            for block in response.content:
+   119→                if block.type == "tool_use":
+   120→                    result = tool_executor(block.name, dict(block.input))
+   121→                    tool_results.append({
+   122→                        "type": "tool_result",
+   123→                        "tool_use_id": block.id,
+   124→                        "content": result,
+   125→                    })
+   126→            working_messages.append({"role": "user", "content": tool_results})
+   127→            continue
+   128→        else:
+   129→            # Case 3: unexpected stop_reason
+   130→            raise UnexpectedStopReason(
+   131→                f"Turn {turn}: unexpected stop_reason={response.stop_reason}"
+   132→            )
+   133→

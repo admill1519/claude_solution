@@ -1,0 +1,28 @@
+The file /voc/work/py3.13-exercises-and-project/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/02-tools-and-audit/starter/tests/test_antipatterns.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+    28→
+    29→# ---------------------------------------------------------------------------
+    30→# Anti-pattern 1 — no string-membership tests against assistant text in the loop
+    31→# ---------------------------------------------------------------------------
+    32→def test_no_string_membership_against_text_in_loop() -> None:
+    33→    """No `"some_token" in <something>` expressions in loop.py.
+    34→
+    35→    Heuristic: any `ast.Compare` node using `ast.In` whose `left` operand is a
+    36→    string `ast.Constant` is flagged. The loop has no legitimate reason to test
+    37→    for the presence of a magic string inside the model's output — that would be
+    38→    natural-language-driven control flow.
+    39→    """
+    40→    tree = _parse(LOOP_PY)
+    41→    offenders = []
+    42→
+    43→    for node in ast.walk(tree):
+    44→        if isinstance(node, ast.Compare):
+    45→            # Check if any operator is ast.In and left operand is a string Constant
+    46→            if any(isinstance(op, ast.In) for op in node.ops):
+    47→                if isinstance(node.left, ast.Constant) and isinstance(node.left.value, str):
+    48→                    offenders.append(ast.unparse(node))
+    49→
+    50→    assert not offenders, f"Found string membership tests: {offenders}"
+    51→
+    52→
+    53→# ---------------------------------------------------------------------------
+    54→# Anti-pattern 2 — no integer-literal iteration cap as the primary stop mechanism

@@ -1,0 +1,21 @@
+total 101
+drwxrwx--- 14 labsuser       48 6144 Nov 25 11:59 .
+drwxr-xr-x  1 root     root     4096 Nov 25 11:24 ..
+drwxr-xr-x  3 labsuser labsuser 6144 Nov 25 11:54 .cache
+drwxrwx--- 11 labsuser       48 6144 Nov 25 11:59 .claude
+-rw-------  1 labsuser labsuser 3749 Nov 25 11:56 .claude.json
+-rw-------  1 labsuser labsuser 3725 Nov 25 11:56 .claude.json.backup
+drwxr-xr-x  4 labsuser labsuser 6144 Nov 25 11:55 .config
+drwxr-xr-x  8 labsuser labsuser 6144 Nov 25 11:55 .git
+-rw-r--r--  1 labsuser labsuser   55 Nov 25 11:42 .gitconfig
+drwxr-xr-x  5 labsuser labsuser 6144 Nov 25 11:54 .local
+drwxr-xr-x  4 labsuser labsuser 6144 Nov 25 11:55 .npm
+drwxr-xr-x  3 labsuser labsuser 6144 Nov 25 11:59 .pytest_cache
+drwx------  2 labsuser labsuser 6144 Nov 25 11:55 .ssh
+drwxrwx---  2 labsuser       48 6144 Nov 25 11:24 .voc
+-rwxrwx---  1 labsuser       48 4063 Nov 25 11:24 README.md
+drwxr-xr-x  4 labsuser labsuser 6144 Nov 25 11:56 node_modules
+-rw-r--r--  1 labsuser labsuser 5257 Nov 25 11:56 package-lock.json
+-rw-r--r--  1 labsuser labsuser   75 Nov 25 11:56 package.json
+drwxrwx---  3 labsuser       48 6144 Nov 25 11:24 py3.10-exercises
+drwxrwx---  7 labsuser       48 6144 Nov 25 11:24 py3.13-exercises-and-project

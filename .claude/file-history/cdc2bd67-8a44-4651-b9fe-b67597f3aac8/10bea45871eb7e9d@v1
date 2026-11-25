@@ -1,0 +1,106 @@
+# Plan Mode vs. Direct Execution: Workflow Decision Guide
+
+This guide helps the e-commerce team decide whether to use **plan mode** (explore → design → implement) or **direct execution** (code immediately) for a given task.
+
+## When to use plan mode (explore-first)
+
+Use plan mode when the task **involves multiple files**, **impacts architecture**, or **risks costly rework**.
+
+### Example: Refactoring the checkout flow
+
+**Scenario:** "Move payment logic from `src/pages/Checkout.tsx` to a new `src/api/payment/process.ts` handler, update the React component to call the new API, adjust error handling throughout."
+
+**Files involved:**
+- `src/pages/Checkout.tsx` (UI update)
+- `src/api/payment/process.ts` (new handler)
+- `src/db/OrderRepository.ts` (potential schema changes)
+
+**Why plan mode:**
+- Touching 3+ files across different layers (pages, API, database).
+- Reworking this later is expensive if the API signature is wrong or the transaction boundary is misplaced.
+- **Plan mode prevents costly rework** by letting you explore the codebase, understand dependencies, and design the refactor before writing.
+
+**Workflow:**
+1. Run `/plan` and explore: "How is payment currently wired? What error cases exist? Where are orders persisted?"
+2. Use the Explore subagent to map the payment flow end-to-end.
+3. Design: "Here's the new handler signature. Here's how the React component will call it. Here's the error handling."
+4. Exit plan mode and execute: implement the refactored checkout.
+
+## When to use direct execution (code immediately)
+
+Use direct execution when the task is **well-scoped**, **touches one function or file**, and **implementation is straightforward**.
+
+### Example: Add a utility function
+
+**Scenario:** "Add a `formatPrice(cents: number): string` function to `src/utils/currency.ts`."
+
+**Scope:**
+- Single file: `src/utils/currency.ts`.
+- Self-contained: no dependencies on other utility functions or APIs.
+- Clear implementation: convert cents to dollars, format with locale-aware rounding.
+
+**Why direct execution:**
+- One file, one clear task.
+- Low risk of architectural issues.
+- If you get it slightly wrong, it's a 2-minute fix.
+
+**Workflow:**
+1. Read the existing `src/utils/currency.ts` to understand the style.
+2. Implement `formatPrice()`.
+3. Add a simple test.
+4. Done.
+
+## Using the Explore subagent for discovery
+
+When you're **unsure about dependencies** or **the codebase is unfamiliar**, use the **Explore subagent** (or `/explore` within plan mode) to isolate verbose discovery.
+
+### Example: Explore-driven investigation
+
+**Scenario:** "I need to understand how the `CartContext` is wired. What files depend on it?"
+
+**Why Explore:**
+- Grep/Glob searches will produce lots of intermediate output (matches, dead-ends, false positives).
+- Using Explore **isolates verbose discovery output**, keeping it out of the main session.
+- Use the **scratchpad pattern**: Explore writes findings to a scratchpad (task notes), then returns a clean summary.
+
+**Workflow:**
+1. Run `/explore "How is CartContext structured and where is it used?"` in a fork context.
+2. Explore searches, reads files, and builds a mental map (all output stays in the fork).
+3. Returns: "CartContext is defined in `src/context/CartContext.tsx`. It's used in 7 components under `src/components/cart/*` and also in `src/hooks/useCart.ts`."
+4. You now have a crisp summary to decide: plan mode or direct execution?
+
+## Combined workflow: Plan + Direct + Explore
+
+Combine these patterns for real-world tasks:
+
+### Example: "Add multi-currency support to the checkout"
+
+1. **Explore:** Use `/explore` to understand the current currency handling (scope and dependencies).
+2. **Plan:** Use `/plan` to design the multi-currency integration across API, React components, and database migrations.
+3. **Direct execution:** Implement specific, well-scoped tasks that the plan identified (e.g., "Add `currency` column to Orders table").
+4. **Explore again (if needed):** If you hit an unexpected dependency, fork off to explore it in isolation.
+
+**Flow:**
+```
+Explore (understand current state)
+  → Plan (design solution across 3+ files)
+  → Direct (implement the specific, scoped tasks from the plan)
+  → [Explore if needed for clarification]
+```
+
+This pattern keeps the main session clean, reduces rework, and maintains velocity.
+
+## Citation: Knight & Webb curriculum
+
+This workflow is inspired by **"SWE Is Becoming Plan and Review,"** a talk highlighting the shift from raw coding to structured problem-solving in modern software engineering. The pattern—explore (understand), plan (design), direct (execute)—mirrors this evolution.
+
+## Reference files
+
+The following files implement the systems described here:
+- `src/pages/Checkout.tsx` (checkout UI)
+- `src/api/payment/process.ts` (payment API handler)
+- `src/db/OrderRepository.ts` (order persistence)
+- `src/context/CartContext.tsx` (cart state)
+- `src/utils/currency.ts` (currency utilities)
+- `.claude/standards/frontend.md` (React standards)
+- `.claude/standards/api.md` (API standards)

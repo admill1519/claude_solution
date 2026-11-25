@@ -1,0 +1,45 @@
+     1→import json
+     2→from pathlib import Path
+     3→from typing import Any, TextIO
+     4→
+     5→
+     6→class Tracer:
+     7→    """Append-only JSONL tracer. One JSON object per call to `write`."""
+     8→
+     9→    def __init__(self, path: Path) -> None:
+    10→        self.path = path
+    11→        path.parent.mkdir(parents=True, exist_ok=True)
+    12→        self._fh: TextIO = path.open("a", encoding="utf-8")
+    13→
+    14→    def write(self, event: dict[str, Any]) -> None:
+    15→        self._fh.write(json.dumps(event, ensure_ascii=False, default=str) + "\n")
+    16→        self._fh.flush()
+    17→
+    18→    def close(self) -> None:
+    19→        self._fh.close()
+    20→
+    21→    def __enter__(self) -> "Tracer":
+    22→        return self
+    23→
+    24→    def __exit__(self, *exc: object) -> None:
+    25→        self.close()
+    26→
+    27→
+    28→class NullTracer(Tracer):
+    29→    """In-memory tracer for tests; never touches the filesystem."""
+    30→
+    31→    def __init__(self) -> None:
+    32→        self.events: list[dict[str, Any]] = []
+    33→        self.path = Path("/dev/null")
+    34→        # Deliberately do not open a file handle; we override write/close.
+    35→
+    36→    def write(self, event: dict[str, Any]) -> None:
+    37→        self.events.append(event)
+    38→
+    39→    def close(self) -> None:
+    40→        return None
+    41→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

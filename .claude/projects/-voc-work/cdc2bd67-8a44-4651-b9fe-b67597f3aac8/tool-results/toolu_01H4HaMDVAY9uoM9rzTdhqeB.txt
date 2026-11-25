@@ -1,0 +1,208 @@
+Exit code 1
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-8.4.2, pluggy-1.7.0 -- /voc/data/py313-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /voc/work/py3.13-exercises-and-project/Build a Multi-Shift Quality Monitoring System with Claude Orchestration/01-tiered-state/starter
+configfile: pyproject.toml
+plugins: anyio-4.16.0
+collecting ... collected 9 items
+
+tests/test_us01_tiered_state.py::test_hotstate_roundtrip_and_size_budget FAILED [ 11%]
+tests/test_us01_tiered_state.py::test_hotstate_rejects_more_than_20_hashes FAILED [ 22%]
+tests/test_us01_tiered_state.py::test_hotstate_atomic_write FAILED       [ 33%]
+tests/test_us01_tiered_state.py::test_warmstore_creates_table_and_index FAILED [ 44%]
+tests/test_us01_tiered_state.py::test_warmstore_insert_many_roundtrips FAILED [ 55%]
+tests/test_us01_tiered_state.py::test_coldstore_writes_monthly_summary FAILED [ 66%]
+tests/test_us01_tiered_state.py::test_coldstore_handles_empty_month FAILED [ 77%]
+tests/test_us01_tiered_state.py::test_defects_since_uses_index_and_does_not_load_full_table FAILED [ 88%]
+tests/test_us01_tiered_state.py::test_defects_since_respects_limit FAILED [100%]
+
+=================================== FAILURES ===================================
+___________________ test_hotstate_roundtrip_and_size_budget ____________________
+
+    def test_hotstate_roundtrip_and_size_budget() -> None:
+        state = HotState(
+            recent_defect_hashes=[f"hash_{i:02d}" for i in range(20)],
+            current_shift_summary="Shift A 2026-04-30: 2 low defects, 0 critical.",
+            active_alerts=["capacitor-bank-C-7 elevated night-shift defect rate"],
+            threshold_statuses={"defect_rate_per_shift": "WARN", "critical_count_24h": "OK"},
+        )
+>       payload = state.to_json_bytes()
+                  ^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_us01_tiered_state.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = HotState(recent_defect_hashes=['hash_00', 'hash_01', 'hash_02', 'hash_03', 'hash_04', 'hash_05', 'hash_06', 'hash_07',...7 elevated night-shift defect rate'], threshold_statuses={'defect_rate_per_shift': 'WARN', 'critical_count_24h': 'OK'})
+
+    def to_json_bytes(self) -> bytes:
+        # TODO: Serialize this model to UTF-8 JSON bytes. Pydantic v2 gives you
+        # `self.model_dump_json()` for the JSON string; encode it as UTF-8.
+>       raise NotImplementedError
+E       NotImplementedError
+
+shift_monitor/state.py:38: NotImplementedError
+__________________ test_hotstate_rejects_more_than_20_hashes ___________________
+
+    def test_hotstate_rejects_more_than_20_hashes() -> None:
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+tests/test_us01_tiered_state.py:32: Failed
+__________________________ test_hotstate_atomic_write __________________________
+
+tmp_path = PosixPath('/tmp/pytest-of-labsuser/pytest-4/test_hotstate_atomic_write0')
+
+    def test_hotstate_atomic_write(tmp_path: Path) -> None:
+        state = HotState(
+            recent_defect_hashes=["a", "b"],
+            current_shift_summary="s",
+            active_alerts=[],
+            threshold_statuses={},
+        )
+        target = tmp_path / "hot_state.json"
+>       state.write_atomic(target)
+
+tests/test_us01_tiered_state.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = HotState(recent_defect_hashes=['a', 'b'], current_shift_summary='s', active_alerts=[], threshold_statuses={})
+path = PosixPath('/tmp/pytest-of-labsuser/pytest-4/test_hotstate_atomic_write0/hot_state.json')
+
+    def write_atomic(self, path: Path) -> None:
+        # TODO: Durably write `self.to_json_bytes()` to `path`.
+        #
+        # Requirements:
+        #   1. Make sure the parent directory exists.
+        #   2. Raise ValueError if the serialized payload is larger than
+        #      HOT_STATE_BYTE_BUDGET — the budget is what forces SQL pre-filtering.
+        #   3. Write to a tempfile in the *same* directory as `path`, flush + fsync,
+        #      then swap it in with os.replace().
+        #
+        # Use os.replace, not os.rename. They behave the same on POSIX, but
+        # os.rename fails on Windows when the destination already exists. The
+        # whole point of an atomic write is that the destination *does* exist.
+>       raise NotImplementedError
+E       NotImplementedError
+
+shift_monitor/state.py:63: NotImplementedError
+____________________ test_warmstore_creates_table_and_index ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-labsuser/pytest-4/test_warmstore_creates_table_a0')
+
+    def test_warmstore_creates_table_and_index(tmp_path: Path) -> None:
+        db = tmp_path / "warm.sqlite"
+        store = WarmStore(db)
+>       store.initialize()
+
+tests/test_us01_tiered_state.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+... [1388 characters truncated] ...
+
+arm.py:34: NotImplementedError
+____________________ test_coldstore_writes_monthly_summary _____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-labsuser/pytest-4/test_coldstore_writes_monthly_0')
+defect_rows = [{'component': 'capacitor-bank-C-7', 'description': 'Surface contamination observed on terminal lug, light oxidation p...n three consecutive samples. Electrode dressing performed.', 'id': 'DEF-20260306-001', 'severity': 'medium', ...}, ...]
+
+    def test_coldstore_writes_monthly_summary(
+        tmp_path: Path, defect_rows: list[dict[str, Any]]
+    ) -> None:
+        warm_db = tmp_path / "warm.sqlite"
+        store = WarmStore(warm_db)
+>       store.initialize()
+
+tests/test_us01_tiered_state.py:91: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shift_monitor.warm.WarmStore object at 0x7ed08f8d25d0>
+
+    def initialize(self) -> None:
+        # TODO: Make sure the parent directory exists, open a connection, and
+        # run SCHEMA_SQL against it.
+>       raise NotImplementedError
+E       NotImplementedError
+
+shift_monitor/warm.py:34: NotImplementedError
+______________________ test_coldstore_handles_empty_month ______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-labsuser/pytest-4/test_coldstore_handles_empty_m0')
+
+    def test_coldstore_handles_empty_month(tmp_path: Path) -> None:
+        warm_db = tmp_path / "warm.sqlite"
+        store = WarmStore(warm_db)
+>       store.initialize()
+
+tests/test_us01_tiered_state.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shift_monitor.warm.WarmStore object at 0x7ed08f906fd0>
+
+    def initialize(self) -> None:
+        # TODO: Make sure the parent directory exists, open a connection, and
+        # run SCHEMA_SQL against it.
+>       raise NotImplementedError
+E       NotImplementedError
+
+shift_monitor/warm.py:34: NotImplementedError
+__________ test_defects_since_uses_index_and_does_not_load_full_table __________
+
+tmp_path = PosixPath('/tmp/pytest-of-labsuser/pytest-4/test_defects_since_uses_index_0')
+defect_rows = [{'component': 'capacitor-bank-C-7', 'description': 'Surface contamination observed on terminal lug, light oxidation p...n three consecutive samples. Electrode dressing performed.', 'id': 'DEF-20260306-001', 'severity': 'medium', ...}, ...]
+
+    def test_defects_since_uses_index_and_does_not_load_full_table(
+        tmp_path: Path, defect_rows: list[dict[str, Any]]
+    ) -> None:
+        db = tmp_path / "warm.sqlite"
+        store = WarmStore(db)
+>       store.initialize()
+
+tests/test_us01_tiered_state.py:132: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shift_monitor.warm.WarmStore object at 0x7ed08f907230>
+
+    def initialize(self) -> None:
+        # TODO: Make sure the parent directory exists, open a connection, and
+        # run SCHEMA_SQL against it.
+>       raise NotImplementedError
+E       NotImplementedError
+
+shift_monitor/warm.py:34: NotImplementedError
+______________________ test_defects_since_respects_limit _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-labsuser/pytest-4/test_defects_since_respects_li0')
+defect_rows = [{'component': 'capacitor-bank-C-7', 'description': 'Surface contamination observed on terminal lug, light oxidation p...n three consecutive samples. Electrode dressing performed.', 'id': 'DEF-20260306-001', 'severity': 'medium', ...}, ...]
+
+    def test_defects_since_respects_limit(
+        tmp_path: Path, defect_rows: list[dict[str, Any]]
+    ) -> None:
+        db = tmp_path / "warm.sqlite"
+        store = WarmStore(db)
+>       store.initialize()
+
+tests/test_us01_tiered_state.py:153: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shift_monitor.warm.WarmStore object at 0x7ed08f0c9130>
+
+    def initialize(self) -> None:
+        # TODO: Make sure the parent directory exists, open a connection, and
+        # run SCHEMA_SQL against it.
+>       raise NotImplementedError
+E       NotImplementedError
+
+shift_monitor/warm.py:34: NotImplementedError
+=========================== short test summary info ============================
+FAILED tests/test_us01_tiered_state.py::test_hotstate_roundtrip_and_size_budget
+FAILED tests/test_us01_tiered_state.py::test_hotstate_rejects_more_than_20_hashes
+FAILED tests/test_us01_tiered_state.py::test_hotstate_atomic_write - NotImple...
+FAILED tests/test_us01_tiered_state.py::test_warmstore_creates_table_and_index
+FAILED tests/test_us01_tiered_state.py::test_warmstore_insert_many_roundtrips
+FAILED tests/test_us01_tiered_state.py::test_coldstore_writes_monthly_summary
+FAILED tests/test_us01_tiered_state.py::test_coldstore_handles_empty_month - ...
+FAILED tests/test_us01_tiered_state.py::test_defects_since_uses_index_and_does_not_load_full_table
+FAILED tests/test_us01_tiered_state.py::test_defects_since_respects_limit - N...
+============================== 9 failed in 0.91s ===============================

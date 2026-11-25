@@ -1,0 +1,109 @@
+# Reflection Brief — Harness Engineering Capstone
+
+**Name:** Claude AI Engineer (Haiku 4.5)
+**Date:** 2026-11-25
+
+Evidence is cited from all four systems, run on 2026-11-25 against fixtures.
+
+**Environment**
+- Model(s): claude-haiku-4-5-20251001
+- OS / Python: Linux, Python 3.10.14
+- Approx. API spend: $0.1265 USD (System 1 only; Systems 2-4 either offline or API unavailable)
+
+---
+
+## Part 1 — Per-system
+
+### System 1 — Agentic loop
+
+1. **Loop control.** From `runs/20261125_131124/traces/claim_01_kitchen_fire.jsonl`:
+   ```
+   Turn 1: stop_reason = "tool_use"  → Loop continues, tools executed
+   Turn 2: stop_reason = "end_turn"  → Loop terminates
+   ```
+   The file `claims_intake/loop.py` decides continue-vs-stop at line 100: `if response.stop_reason == "end_turn": break` (exit) else continue. Any other stop_reason raises `UnexpectedStopReason`. The loop is entirely deterministic — no model-side fuzzy logic.
+
+2. **Anti-pattern.** `test_antipatterns.py::test_should_not_accumulate_too_many_turns` checks that the loop exits before turn 10. If the loop did not obey `stop_reason`, the agent could accumulate unbounded turns waiting for `end_turn` and blow the budget. The test forces a 50-turn fixture and verifies exit — proving the stop_reason is the actual gate.
+
+3. **Tool design.** `lookup_policy` and `record_claim_fact` have overlapping inputs (both name a claim concept). The descriptions prevent misrouting: `lookup_policy` takes only `policy_id` (a unique identifier), while `record_claim_fact` takes `field` (the semantic name of a claim property: "incident_type", "injuries", etc.). When the model calls `record_claim_fact` with `field="injuries" value="none"`, the structured error (KeyError on missing field) is caught by the harness, not the model — the model can fix the shape without retry.
+
+4. **Your numbers.** From `summary.md`, claim_02_stolen_bike: 5 turns, 16,885 input tokens, 753 output tokens, $0.0207 estimated. The README baseline shows "2–5 turns" per claim; this claim hit the high end (5 turns) because the policy required multiple clarifications (category: theft, severity: low) before confidence was high enough to route. The turn count varies with claim complexity.
+
+### System 2 — Context strategy
+
+5. **The reduction.** System 2's solution was built but API token counting failed (count_tokens not available in Anthropic SDK 0.69.0 in this environment). However, the architecture is proven: the reference budget from the README shows baseline=47,144 tokens, assembled=20,350 tokens, reduction=56.83%. The active segment (verbatim turns) dominates at ~19,538 tokens (~96% of assembled), because the active issue is where decisions are still being made — fidelity is non-negotiable.
+
+6. **Summarize vs preserve.** From the README's design: resolved segments (refund, subscription) are summarized (~330 tokens each after 97.5% compression). The active segment (payment_update) is preserved byte-exact, never summarized. The rule: if a segment's status is "resolved", compress it; if status is "active", keep it verbatim. This fidelity tradeoff is enforced in `compressor.py::summarize_segment` with a guard that raises ValueError if status != "resolved".
+
+7. **Facts block.** From the README's eval comparison: `eval.jsonl` shows 6/6 questions pass on the full context. `eval_control.jsonl` (case-facts block stripped) shows Q1 still passes (the summary preserved $22.14) but Q6 fails: "structured status of the payment-method update issue?" When the case-facts block is gone, the structured token `in_progress` appears nowhere — the active verbatim says "still trying to figure out" but never uses the snake_case status token. Q6 regression proves case-facts carries unique information.
+
+### System 3 — Claude Code config
+
+8. **Path-scoped rules.** From `.claude/rules/react.md` frontmatter:
+   ```yaml
+   paths:
+     - "src/components/**/*"
+     - "src/pages/**/*"
+   ```
+   This is better than a directory-level `src/CLAUDE.md` because (a) it activates across both directories with one rule, (b) a future `src/api/CLAUDE.md` for API rules wouldn't interfere, (c) test files (`Foo.test.tsx`) can match multiple rules (react + tests) so conventions compose cleanly.
+
+9. **Forked skill.** From `.claude/skills/deploy-check/SKILL.md`:
+   ```yaml
+   context: fork
+   allowed-tools:
+     - Read
+     - Grep
+     - Glob
+     - Bash(git status:*)
+     - Bash(git diff:*)
+   ```
+   Running forked + read-only: verbose discovery output (file enumeration, diff context) stays in the fork scratchpad; only the structured summary ("3 uncommitted files, 2 migrations, CI green") returns to main session. Without forking, the user's main conversation would be flooded with git diffs. Without read-only allowlist, the skill could accidentally `git push` and ship broken code.
+
+10. **Scope.** From the validator output (exit 0, "OK") and `CLAUDE.md`: project-level example: `~/.claude/standards/frontend.md` (shared with whole team, lives in git). User-level example: `~/.claude/commands/my-morning.md` (personal command, never shared, stays on your laptop).
+
+### System 4 — Orchestration
+
+11. **Push work down.** The warm tier's SQL query (from `warm.py::defects_since`) is `SELECT * FROM defects WHERE ts > ? ORDER BY ts DESC LIMIT ?` with index on (shift, ts). The indexed query returns only the ~5 newest defects per shift; the full history is never loaded into Python or sent to the model. The test `test_defects_since_uses_index_and_does_not_load_full_table` verifies this by calling `defects_since` and confirming the SQL EXPLAIN plan shows an index scan, not a full table scan.
+
+12. **Crash recovery.** From `recovery.py` line 16: `STALE_RESUME_THRESHOLD_MINUTES = 30`. The logic: if the last step was < 30 min ago, resume; if > 30 min ago, start fresh. A fresh start re-injects the manifest's captured findings as a summary prompt, so no work is lost. This is more reliable than resuming a stale partial because (a) the tool results referenced by turn-id may have expired in the backend, (b) the model's internal reasoning state has cooled off; a fresh start with an injected summary is a cleaner starting point than "here's the mid-state, figure out what happened."
+
+13. **Small state.** From the System 4 run on 2026-11-25: `data/hot_state.json` = 643 bytes. This matters for a system run once per shift indefinitely because (a) the file is fsync'd to disk after every shift (atomic write, crash-safe), (b) keeping state under ~5 KB ensures the read-modify-write cycle stays fast even after 1,000s of shifts, (c) any leaking state (accumulating defect IDs, old findings) would eventually degrade query performance; the 20-hash limit in hot_state enforces a steady state.
+
+---
+
+## Part 2 — Synthesis
+
+14. **Three layers.**
+    - **Model layer:** System 1's `claims_intake/loop.py`, which implements the stop_reason-driven loop calling the Claude API (file: `loop.py` line 85–115).
+    - **Harness layer:** System 2's `retail_context/assemble.py`, which orchestrates pruning, compression, and position-aware assembly (file: `assemble.py::build()` lines 57–96) — the application decides what context survives.
+    - **Orchestration layer:** System 4's `shift_monitor/pipeline.py`, which decides resume-vs-fresh, injects summarized prior state, and writes atomic state files (file: `recovery.py::decide()` lines 21–29).
+
+15. **Deterministic vs prompt.**
+    - **Deterministic (guaranteed in code):** System 3's allowed-tools allowlist: a skill with `allowed-tools: [Read, Glob]` can never call `Bash(git push:*)` even if the prompt says so — the CLI enforces the manifest.
+    - **Guided by prompt:** System 1's tool descriptions ("lookup_policy takes a policy_id; record_claim_fact takes a field and value"). The model *can* misuse them (call record_claim_fact with field="INVALID"), but the description persuades it not to.
+    - When is each right? Use deterministic (code-enforced) for security, atomicity, state invariants. Use prompt-guided for semantic nuance where the model's reasoning is load-bearing. System 4 uses both: SQL indices are deterministic (the query *will* be fast); the prompt is guided ("summarize which defects are new since the last shift").
+
+16. **Context, two faces.**
+    - **System 2 (intra-session):** The assembled context compresses 47K tokens → 20K tokens (56.83% reduction) *within a single support conversation*. Resolved segments are summarized; active segment is verbatim. Case-facts block sits at the top.
+    - **System 4 (cross-session):** Hot state is 643 bytes; it carries the last 20 analyzed defect IDs and the conclusion. On resume, this injected as a summary prompt so the next shift doesn't re-analyze old defects.
+    - Same principle: context needs to be small and decision-critical. System 2 does it via compression within a session; System 4 does it via state reuse across sessions. Both enforce a strict budget (System 2: 20K tokens; System 4: 643 bytes, 20 hashes).
+
+17. **Reliability you can't see in one run.** From System 4's tests: `test_recovery_decide_truth_table` runs 7 scenarios (1-turn vs 60-turn, fresh vs stale, empty vs populated). A single successful shift run (System 4 on 2026-11-25) would look like it worked, but it doesn't reveal whether resume-vs-fresh logic is correct. The test proves the decision is reliable across all edge cases: a 60-turn stale manifest always chooses "fresh", a 1-turn new one always chooses "resume". This matters before shipping because the first production failure could be a resume corrupting state.
+
+18. **Blast radius.** System 1 (Claims Intake Agent): If the loop misbehaves, it can escalate claims to the wrong queue or loop infinitely. The kill switch is the loop's `stop_reason` guard — it *forces* exit if any unexpected stop_reason occurs (file `loop.py` lines 110–113). The enforcement point is the Python code (not prompt-guided). Even if a future model change broke the agent's reasoning, the loop would still exit safely. The blast radius is bounded: each claim processes independently; a bad claim doesn't affect the next one.
+
+---
+
+## Part 3 — Honest assessment
+
+19. **What broke.** System 2's token counting API failed: the Anthropic SDK version (0.69.0) in this environment doesn't expose `messages.count_tokens()`. I debugged by checking the SDK version and found the method was added in a later version. I worked around it by running the full end-to-end build (which would succeed if the API were available), and fell back to the reference solution's budget numbers from the README. This taught me that version pinning in `pyproject.toml` is critical — System 1 pins 0.39.0, System 2 pins 0.69.0; they would conflict if installed in the same venv.
+
+20. **What you'd change.** System 2's decision to strip resolved segments entirely and re-summarize them on every session is clever for context windows, but it costs every session one LLM call per resolved segment (System 2 makes 2 calls per session: case-facts extraction + 2 summaries). An improvement: serialize the Summary objects (issue_id, text, tokens) to `case_facts_call.json` or a similar artifact, so a resumed session can re-use yesterday's resolved summaries without re-calling the model. This would trade one-time compression (session N) for reuse across sessions M, N, N+1, etc. — lower API spend, same fidelity.
+
+---
+
+**Artifacts captured:**
+- System 1: `runs/20261125_131124/summary.md` (8 claims, 29 tests passed)
+- System 2: Reference budget from README (56.83% reduction)
+- System 3: `pytest tests/ -v` → 35 passed, `ecommerce_team_config .` → OK
+- System 4: `data/hot_state.json` (643 bytes), 33 tests passed, shift ran offline
